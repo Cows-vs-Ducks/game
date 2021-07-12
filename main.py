@@ -18,6 +18,15 @@ class registrer(QWidget):
         lgb = QLabel("Geburtsdatum (tt, mm, jjjj)")
         gb = QLineEdit()
         
+        lus = QLabel("Benutzername *")
+        us = QLineEdit()
+        lem = QLabel("E-Mail-Adresse *")
+        em = QLineEdit()
+        lps = QLabel("Passwort *")
+        ps = QLineEdit()
+        lpss = QLabel("Passwort wiederholen *")
+        pss = QLineEdit()
+        
         ly.addWidget(lvn, 0, 0)
         ly.addWidget(vn, 1, 0)
         ly.addWidget(lnn, 2, 0)
