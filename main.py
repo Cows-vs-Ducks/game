@@ -7,6 +7,8 @@ class registrer(QWidget):
     def __init__(self, parent=None): 
         super().__init__(parent)
         
+        nm = QLineEdit()
+        
 app = QApplication(sys.argv) 
 reg = registrer()
 reg.resize(app.desktop()) 
