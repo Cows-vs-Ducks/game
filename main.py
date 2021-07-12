@@ -27,6 +27,8 @@ class registrer(QWidget):
         lpss = QLabel("Passwort wiederholen *")
         pss = QLineEdit()
         
+        fertig = QPushButton("registrieren")
+        
         ly.addWidget(lvn, 0, 0)
         ly.addWidget(vn, 1, 0)
         ly.addWidget(lem, 2, 0)
