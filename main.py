@@ -43,9 +43,9 @@ class registrer(QWidget):
         self.setLayout(l4)
         self.setLayout(w4)
         
+        self.show()
+        
         
 app = QApplication(sys.argv) 
-reg = registrer()
-reg.resize(app.desktop()) 
-reg.show()
+registrer()
 sys.exit(app.exec_())
