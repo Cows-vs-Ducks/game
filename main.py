@@ -28,6 +28,7 @@ class registrer(QWidget):
         pss = QLineEdit()
         
         fertig = QPushButton("registrieren")
+        pf = QLabel("* Pflichtfelder")
         
         ly.addWidget(fertig, 8, 2)
         
