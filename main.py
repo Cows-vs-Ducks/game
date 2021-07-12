@@ -16,9 +16,13 @@ class registrer(QWidget):
         l4 = QHBoxLayout()
         w4 = QHBoxLayout()
         
+        lvn = QLabel("Vorname")
         vn = QLineEdit()
+        lnn = QLabel("Nachname")
         nn = QLineEdit()
+        lag = QLabel("Alter")
         ag = QLineEdit()
+        lgb = QLabel("Geburtsdatum (tt, mm, jjjj)")
         gb = QLineEdit()
         
         
