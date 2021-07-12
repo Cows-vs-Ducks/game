@@ -34,6 +34,15 @@ class registrer(QWidget):
         l4.addWidget(lgb)
         w4.addWidget(gb)
         
+        self.setLayout(l1)
+        self.setLayout(w1)
+        self.setLayout(l2)
+        self.setLayout(w2)
+        self.setLayout(l3)
+        self.setLayout(w3)
+        self.setLayout(l4)
+        self.setLayout(w4)
+        
         
 app = QApplication(sys.argv) 
 reg = registrer()
