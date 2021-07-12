@@ -18,14 +18,14 @@ class registrer(QWidget):
         lgb = QLabel("Geburtsdatum (tt, mm, jjjj)")
         gb = QLineEdit()
         
-        ly.addWidget(lvn)
-        ly.addWidget(vn)
-        ly.addWidget(lnn)
-        ly.addWidget(nn)
-        ly.addWidget(lag)
-        ly.addWidget(ag)
-        ly.addWidget(lgb)
-        ly.addWidget(gb)
+        ly.addWidget(lvn, 0, 0)
+        ly.addWidget(vn, 1, 0)
+        ly.addWidget(lnn, 2, 0)
+        ly.addWidget(nn, 3, 0)
+        ly.addWidget(lag, 4, 0)
+        ly.addWidget(ag, 5, 0)
+        ly.addWidget(lgb, 6, 0)
+        ly.addWidget(gb, 7, 0)
         
         self.setLayout(ly)
         
