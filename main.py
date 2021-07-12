@@ -29,6 +29,8 @@ class registrer(QWidget):
         
         fertig = QPushButton("registrieren")
         
+        ly.addWidget(fertig, 8, 2)
+        
         ly.addWidget(lvn, 0, 0)
         ly.addWidget(vn, 1, 0)
         ly.addWidget(lem, 2, 0)
