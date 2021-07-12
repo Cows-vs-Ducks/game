@@ -47,6 +47,6 @@ class registrer(QWidget):
         
         
 app = QApplication(sys.argv) 
-reg = rregistrer()
+reg = registrer()
 reg.show()
 sys.exit(app.exec_())
