@@ -36,14 +36,14 @@ class registrer(QWidget):
         ly.addWidget(lgb, 6, 0)
         ly.addWidget(gb, 7, 0)
         
-        ly.addWidget(lus, 0, 0)
-        ly.addWidget(us, 1, 0)
-        ly.addWidget(lnn, 2, 0)
-        ly.addWidget(nn, 3, 0)
-        ly.addWidget(lps, 4, 0)
-        ly.addWidget(ps, 5, 0)
-        ly.addWidget(lpss, 6, 0)
-        ly.addWidget(pss, 7, 0)
+        ly.addWidget(lus, 0, 2)
+        ly.addWidget(us, 1, 2)
+        ly.addWidget(lnn, 2, 2)
+        ly.addWidget(nn, 3, 2)
+        ly.addWidget(lps, 4, 2)
+        ly.addWidget(ps, 5, 2)
+        ly.addWidget(lpss, 6, 2)
+        ly.addWidget(pss, 7, 2)
         
         self.setLayout(ly)
         
