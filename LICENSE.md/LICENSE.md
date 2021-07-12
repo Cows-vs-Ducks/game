@@ -1,1 +1,1 @@
-Du darfts dieses Spiel nicht weitergeben, nachmachen oder verändern.
+Du darfts dieses Spiel nicht weitergeben, nachmachen, benutzen oder verändern.
