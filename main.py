@@ -15,7 +15,7 @@ class registrer(QWidget):
         nn = QLineEdit()
         lag = QLabel("Alter")
         ag = QLineEdit()
-        lgb = QLabel("Geburtsdatum (tt, mm, jjjj)")
+        lgb = QLabel("Geburtsdatum (tt.mm.jjjj)")
         gb = QLineEdit()
         
         lus = QLabel("Benutzername *")
