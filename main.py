@@ -30,7 +30,8 @@ class registrer(QWidget):
         fertig = QPushButton("registrieren")
         pf = QLabel("* Pflichtfelder")
         
-        ly.addWidget(fertig, 8, 2)
+        ly.addWidget(fertig, 8, 1)
+        ly.addWidget(pf, 8, 2)
         
         ly.addWidget(lvn, 0, 0)
         ly.addWidget(vn, 1, 0)
