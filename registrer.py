@@ -56,7 +56,7 @@ class registrer(QWidget):
         
         self.setLayout(ly)
         
-        self.show()
+        #self.show()
 
     def regg(self):
         vn = self.vn.text()
@@ -94,9 +94,21 @@ class registrer(QWidget):
             msgBox.setText("43: Du konntest nicht registriert werden.")
             msgBox.setInformativeText("Vielleicht hast du das Passwort nicht korrekt wiederholt oder du hast nicht alle Pflichtfwlder ausgefüllt. Wenn alles stimmt, und dieser Fehler weiterhin auftritt, gehe auf cows-vs-ducks.tk und schreibe uns über den Chat den Fehlercode.")
             msgBox.exec_()
+            
+class login(QWidget): 
+    def __init__(self, parent=None): 
+        super().__init__(parent)
         
+        ly = QGridLayout()
+        
+        bt = QPushButton("test")
+        ly.addWidget(bt, 1, 1)
+        
+        self.setLayout(ly)
+        
+        #self.show()
         
 app = QApplication(sys.argv) 
-reg = registrer()
+reg = login()
 reg.show()
 sys.exit(app.exec_())
