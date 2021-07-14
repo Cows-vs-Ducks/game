@@ -104,6 +104,10 @@ class login(QWidget):
         bt = QPushButton("test")
         ly.addWidget(bt, 1, 1)
         
+        self.Stack = QStackedWidget(self)
+        self.Stack.addWidget(login)
+        self.Stack.addWidget(registrer)
+        
         self.setLayout(ly)
         
         #self.show()
