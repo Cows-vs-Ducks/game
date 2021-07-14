@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import sys
+from deta import Deta
 
 class registrer(QWidget): 
     def __init__(self, parent=None): 
@@ -68,7 +69,12 @@ class registrer(QWidget):
         pss = self.pss.text()
 
         if em != "" and em != "" and ps != "" and pss == ps:
-            print("richtig")
+            deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
+            users = deta.Base("user")
+            users.insert({ "v-name": vn,
+                            "n-name": nn,
+                          "age": ag
+            }) 
         
         
 app = QApplication(sys.argv) 
