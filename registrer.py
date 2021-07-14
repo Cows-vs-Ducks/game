@@ -82,7 +82,12 @@ class registrer(QWidget):
                           "moneten": "0",
                           "level": "1",
                           "waffen": "standart"
-            }) 
+            })
+            
+        else:
+            msgBox = QMessageBox()
+            msgBox.setText("Du konntest nicht registriert werden. Vielleicht hast du das Passwort nicht korrekt wiederholt oder du hast nicht alle Pflichtfwlder ausgefüllt. Wenn alles stimmt, und dieser Fehler immer noch kommet, gehe auf cows-vs-ducks.tk und schreibe uns über den Chat den Fehlercode 43.")
+            msgBox.exec_()
         
         
 app = QApplication(sys.argv) 
