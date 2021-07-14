@@ -83,6 +83,11 @@ class registrer(QWidget):
                           "level": "1",
                           "waffen": "standart"
             })
+            msgBoxr = QMessageBox()
+            msgBoxr.setText("Du wurdest erfolgreich registriert.")
+            msgBoxr.exec_()
+            
+            sys.exit()
             
         else:
             msgBox = QMessageBox()
