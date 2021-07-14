@@ -71,9 +71,17 @@ class registrer(QWidget):
         if em != "" and em != "" and ps != "" and pss == ps:
             deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
             users = deta.Base("user")
-            users.insert({ "v-name": vn,
-                            "n-name": nn,
-                          "age": ag
+            users.insert({"key": us,
+                          "vorname": vn,
+                          "nachname": nn,
+                          "alter": ag,
+                          "geburtsdatum": gb,
+                          "benutzername": us,
+                          "email": em,
+                          "passwort": ps,
+                          "moneten": "0",
+                          "level": "1",
+                          "waffen": "standart"
             }) 
         
         
