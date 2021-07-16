@@ -26,7 +26,7 @@ class main(QWidget):
         page1Button.clicked.connect(stack.setPage1)
         page2Button.clicked.connect(stack.setPage2)
     
-        layout = QGridLayout(window)
+        layout = QGridLayout()
         layout.addWidget(stack, 0, 0, 1, 2)
         layout.addWidget(page1Button, 1, 0)
         layout.addWidget(page2Button, 1, 1)
