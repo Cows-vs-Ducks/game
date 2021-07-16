@@ -4,7 +4,7 @@ from PyQt5.QtGui import *
 import sys
 from deta import Deta
 
-class StackedWidget(QStackedWidget):
+class stack(QStackedWidget):
     def __init__(self, parent = None):
         QStackedWidget.__init__(self, parent)
         
@@ -138,6 +138,6 @@ class registrer(QWidget):
         
         
 app = QApplication(sys.argv) 
-reg = registrer()
+reg = main()
 reg.show()
 sys.exit(app.exec_())
