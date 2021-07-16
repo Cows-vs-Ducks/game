@@ -17,6 +17,23 @@ class StackedWidget(QStackedWidget):
     def setPage2(self):
         self.setCurrentIndex(1)
         
+class main(QWidget):
+    def __init__(self, parent=None):
+        super().__init(parent)
+        
+        page1Button = QPushButton("Page 1")
+        page2Button = QPushButton("Page 2")
+        page1Button.clicked.connect(stack.setPage1)
+        page2Button.clicked.connect(stack.setPage2)
+    
+        layout = QGridLayout(window)
+        layout.addWidget(stack, 0, 0, 1, 2)
+        layout.addWidget(page1Button, 1, 0)
+        layout.addWidget(page2Button, 1, 1)
+        
+        self.setLayout(layout)
+        self.show()
+        
 class login(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -24,7 +41,7 @@ class login(QWidget):
         llly = QGridLayout()
         
         teeest = QPushButton()
-        llly.addWidget(teeest)
+        llly.addWidget(teeest, 1, 1)
         
         self.setLayout(llly)
 
