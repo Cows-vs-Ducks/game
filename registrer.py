@@ -19,7 +19,7 @@ class stack(QStackedWidget):
         
 class main(QWidget):
     def __init__(self, parent=None):
-        super().__init(parent)
+        super().__init__(parent)
         
         page1Button = QPushButton("Page 1")
         page2Button = QPushButton("Page 2")
