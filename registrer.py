@@ -81,7 +81,8 @@ class registrer(QWidget):
                           "passwort": ps,
                           "moneten": "0",
                           "level": "1",
-                          "waffen": "standart"
+                          "waffen": "standart",
+                          "status": "gamer"
             })
             msgBoxr = QMessageBox()
             msgBoxr.setText("Du wurdest erfolgreich registriert.")
