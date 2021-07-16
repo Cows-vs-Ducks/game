@@ -4,6 +4,30 @@ from PyQt5.QtGui import *
 import sys
 from deta import Deta
 
+class StackedWidget(QStackedWidget):
+    def __init__(self, parent = None):
+        QStackedWidget.__init__(self, parent)
+        
+        self.addWidget(registrer)
+        self.addWidget(login)
+    
+    def setPage1(self):
+        self.setCurrentIndex(0)
+    
+    def setPage2(self):
+        self.setCurrentIndex(1)
+        
+class login(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        
+        llly = QGridLayout()
+        
+        teeest = QPushButton()
+        llly.addWidget(teeest)
+        
+        self.setLayout(llly)
+
 class registrer(QWidget): 
     def __init__(self, parent=None): 
         super().__init__(parent)
@@ -56,7 +80,6 @@ class registrer(QWidget):
         
         self.setLayout(ly)
         
-        self.show()
 
     def regg(self):
         vn = self.vn.text()
