@@ -42,6 +42,7 @@ class login(QWidget):
         ps = QLabel("Passwort *")
         ps1 = QLineEdit()
         fe = QPushButton("login")
+        pfff = QLabel("* Pflichtfelder")
         rg = QPushButton("registrieren")
         pltz = QLabel()
         llly.addWidget(us, 0, 1)
@@ -50,7 +51,7 @@ class login(QWidget):
         llly.addWidget(ps1, 3, 1)
         llly.addWidget(pltz, 4, 1)
         llly.addWidget(fe, 5, 0)
-        llly.addWidget(pltz, 5, 1)
+        llly.addWidget(pfff, 5, 1)
         llly.addWidget(rg, 5, 2)
         
         self.setLayout(llly)
@@ -81,11 +82,13 @@ class registrer(QWidget):
         
         fertig = QPushButton("registrieren")
         pf = QLabel("* Pflichtfelder")
+        log = QPushButton("login")
 
         fertig.clicked.connect(self.regg)
         
-        ly.addWidget(fertig, 8, 1)
-        ly.addWidget(pf, 8, 2)
+        ly.addWidget(fertig, 8, 0)
+        ly.addWidget(pf, 8, 1)
+        ly.addWidget(log, 8, 2)
         
         ly.addWidget(lvn, 0, 0)
         ly.addWidget(self.vn, 1, 0)
