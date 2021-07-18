@@ -25,10 +25,10 @@ class main(QWidget):
         self.setLayout(layout)
         self.show()
         
-    def setPage1(self):
+    def login(self):
         self.stack.setCurrentIndex(0)
     
-    def setPage2(self):
+    def registrer(self):
         self.stack.setCurrentIndex(1)
         
 class login(QWidget):
@@ -45,6 +45,9 @@ class login(QWidget):
         pfff = QLabel("* Pflichtfelder")
         rg = QPushButton("registrieren")
         pltz = QLabel()
+        
+        rg.clicked.connect(main.registrer)
+        
         llly.addWidget(us, 0, 1)
         llly.addWidget(us1, 1, 1)
         llly.addWidget(ps, 2, 1)
@@ -85,6 +88,7 @@ class registrer(QWidget):
         log = QPushButton("login")
 
         fertig.clicked.connect(self.regg)
+        log.clicked.connect(main.login)
         
         ly.addWidget(fertig, 8, 0)
         ly.addWidget(pf, 8, 1)
