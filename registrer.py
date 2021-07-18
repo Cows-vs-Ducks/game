@@ -49,7 +49,7 @@ class login(QWidget):
         llly.addWidget(ps, 2, 1)
         llly.addWidget(ps1, 3, 1)
         llly.addWidget(pltz, 4, 1)
-        llly.addWidget(fe, 5, 1)
+        llly.addWidget(fe, 5, 0)
         llly.addWidget(pltz, 5, 1)
         llly.addWidget(rg, 5, 2)
         
