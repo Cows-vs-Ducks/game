@@ -37,8 +37,16 @@ class login(QWidget):
         
         llly = QGridLayout()
         
-        teeest = QPushButton()
-        llly.addWidget(teeest, 1, 1)
+        us = QLabel("Benutzername *")
+        us1 = QLineEdit()
+        ps = QLabel("Passwort *")
+        ps1 = QLineEdit()
+        fe = QPushButton("login")
+        llly.addWidget(us, 0, 0)
+        llly.addWidget(us1, 1, 0)
+        llly.addWidget(ps, 2, 0)
+        llly.addWidget(ps1, 3, 0)
+        llly.addWidget(fe, 5, 0)
         
         self.setLayout(llly)
 
