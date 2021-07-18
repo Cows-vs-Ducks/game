@@ -19,8 +19,8 @@ class main(QWidget):
     
         layout = QGridLayout()
         layout.addWidget(self.stack, 0, 0)
-        layout.addWidget(page1Button, 1, 0)
-        layout.addWidget(page2Button, 1, 1)
+        #layout.addWidget(page1Button, 1, 0)
+        #layout.addWidget(page2Button, 1, 1)
         
         self.setLayout(layout)
         self.show()
