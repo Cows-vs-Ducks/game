@@ -42,10 +42,12 @@ class login(QWidget):
         ps = QLabel("Passwort *")
         ps1 = QLineEdit()
         fe = QPushButton("login")
+        pltz = QLabel()
         llly.addWidget(us, 0, 0)
         llly.addWidget(us1, 1, 0)
         llly.addWidget(ps, 2, 0)
         llly.addWidget(ps1, 3, 0)
+        llly.addWidget(pltz, 4, 0)
         llly.addWidget(fe, 5, 0)
         
         self.setLayout(llly)
