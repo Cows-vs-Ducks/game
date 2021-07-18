@@ -8,8 +8,8 @@ class stack(QStackedWidget):
     def __init__(self, parent = None):
         QStackedWidget.__init__(self, parent)
         
-        self.addWidget(registrer)
-        self.addWidget(login)
+        self.addWidget(registrer())
+        self.addWidget(login())
     
     def setPage1(self):
         self.setCurrentIndex(0)
