@@ -2,37 +2,34 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import sys
-from deta import Deta
-
-class stack(QStackedWidget):
-    def __init__(self, parent = None):
-        QStackedWidget.__init__(self, parent)
-        
-        self.addWidget(registrer())
-        self.addWidget(login())
-    
-    def setPage1(self):
-        self.setCurrentIndex(0)
-    
-    def setPage2(self):
-        self.setCurrentIndex(1)
+from deta import Deta    
         
 class main(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         
+        self.stack = QStackedWidget()
+        self.stack.addWidget(login())
+        self.stack.addWidget(registrer())
+        
         page1Button = QPushButton("Page 1")
         page2Button = QPushButton("Page 2")
-        page1Button.clicked.connect(stack.setPage1)
-        page2Button.clicked.connect(stack.setPage2)
+        page1Button.clicked.connect(self.setPage1)
+        page2Button.clicked.connect(self.setPage2)
     
         layout = QGridLayout()
-        layout.addWidget(stack, 0, 0, 1, 2)
+        layout.addWidget(self.stack, 0, 0)
         layout.addWidget(page1Button, 1, 0)
         layout.addWidget(page2Button, 1, 1)
         
         self.setLayout(layout)
         self.show()
+        
+    def setPage1(self):
+        self.stack.setCurrentIndex(0)
+    
+    def setPage2(self):
+        self.stack.setCurrentIndex(1)
         
 class login(QWidget):
     def __init__(self, parent=None):
@@ -133,7 +130,7 @@ class registrer(QWidget):
         else:
             msgBox = QMessageBox()
             msgBox.setText("43: Du konntest nicht registriert werden.")
-            msgBox.setInformativeText("Vielleicht hast du das Passwort nicht korrekt wiederholt oder du hast nicht alle Pflichtfwlder ausgefüllt. Wenn alles stimmt, und dieser Fehler weiterhin auftritt, gehe auf cows-vs-ducks.tk und schreibe uns über den Chat den Fehlercode.")
+            msgBox.setInformativeText("Vielleicht hast du das Passwort nicht korrekt wiederholt oder du hast nicht alle Pflichtfelder ausgefüllt. Wenn alles stimmt, und dieser Fehler weiterhin auftritt, gehe auf cows-vs-ducks.tk und schreibe uns über den Chat den Fehlercode.")
             msgBox.exec_()
         
         
