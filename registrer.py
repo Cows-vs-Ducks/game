@@ -61,6 +61,20 @@ class login(QWidget):
         user = users.get(ussee)
         try:
             password = user["passwort"]
+            if password == passwwd:
+                datei = open("user.txt", "a")
+                datei.write(ussee)
+                datei.close()
+                msgBox = QMessageBox()
+                msgBox.setText("Willkommen zurück, " + ussee)
+                msgBox.setInformativeText("Du wurdest erfolgreich angemeldet.")
+                msgBox.exec_()
+                
+            else:
+                msgBox = QMessageBox()
+                msgBox.setText("41: Du konntest nicht angemeldet werden.")
+                msgBox.setInformativeText("Dein Passwort ist falsch. Wenn das Problem weiterhin besteht oder wenn du dein Passwort vergessen hasst, schreibe uns den Fehlercode per Mail, zusammen mit der E-Mail-Adresse, die du bei der Registrierung angegeben hast, damit wir Prüfen können, ob du es bist. Wir senden dir dann dein Passwort per Mail zu.")
+                msgBox.exec_()
         except:
             msgBox = QMessageBox()
             msgBox.setText("42: Du konntest nicht angemeldet werden.")
