@@ -59,7 +59,13 @@ class login(QWidget):
         deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR") # 3) create and use as many DBs as you want!
         users = deta.Base("user")
         user = users.get(ussee)
-        password = user["passwort"]
+        try:
+            password = user["passwort"]
+        except:
+            msgBox = QMessageBox()
+            msgBox.setText("42: Du konntest nicht angemeldet werden.")
+            msgBox.setInformativeText("Der Benutzername wurde nicht in unserer Datenbank gefunden. Falls dieser Fehler weiterhin besteht, schreibe uns den Fehlercode und deinen Benutzernamen.")
+            msgBox.exec_()
 
 class registrer(QWidget): 
     def __init__(self, main, parent=None): 
