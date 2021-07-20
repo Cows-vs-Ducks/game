@@ -9,8 +9,8 @@ class main(QWidget):
         super().__init__(parent)
         
         self.stack = QStackedWidget()
-        self.stack.addWidget(login())
-        self.stack.addWidget(registrer())
+        self.stack.addWidget(login(self))
+        self.stack.addWidget(registrer(self))
         
         layout = QGridLayout()
         layout.addWidget(self.stack, 0, 0)
@@ -25,7 +25,7 @@ class main(QWidget):
         self.stack.setCurrentIndex(1)
         
 class login(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, main, parent=None):
         super().__init__(parent)
         
         llly = QGridLayout()
@@ -53,7 +53,7 @@ class login(QWidget):
         self.setLayout(llly)
 
 class registrer(QWidget): 
-    def __init__(self, parent=None): 
+    def __init__(self, main, parent=None): 
         super().__init__(parent)
         
         ly = QGridLayout()
