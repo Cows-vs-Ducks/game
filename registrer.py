@@ -31,26 +31,31 @@ class login(QWidget):
         llly = QGridLayout()
         
         us = QLabel("Benutzername *")
-        us1 = QLineEdit()
+        self.us1 = QLineEdit()
         ps = QLabel("Passwort *")
-        ps1 = QLineEdit()
+        self.ps1 = QLineEdit()
         fe = QPushButton("login")
         pfff = QLabel("* Pflichtfelder")
         rg = QPushButton("registrieren")
         pltz = QLabel()
         
         rg.clicked.connect(main.registrer)
+        fe.clicked.connect(self.logii)
         
         llly.addWidget(us, 0, 1)
-        llly.addWidget(us1, 1, 1)
+        llly.addWidget(self.us1, 1, 1)
         llly.addWidget(ps, 2, 1)
-        llly.addWidget(ps1, 3, 1)
+        llly.addWidget(self.ps1, 3, 1)
         llly.addWidget(pltz, 4, 1)
         llly.addWidget(fe, 5, 0)
         llly.addWidget(pfff, 5, 1)
         llly.addWidget(rg, 5, 2)
         
         self.setLayout(llly)
+        
+    def logii(self):
+        passwwd = self.ps1.text()
+        ussee = self.us1.text()
 
 class registrer(QWidget): 
     def __init__(self, main, parent=None): 
