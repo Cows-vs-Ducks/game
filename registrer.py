@@ -56,6 +56,9 @@ class login(QWidget):
     def logii(self):
         passwwd = self.ps1.text()
         ussee = self.us1.text()
+        deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR") # 3) create and use as many DBs as you want!
+        users = deta.Base("user")
+        user = users.get(ussee)
 
 class registrer(QWidget): 
     def __init__(self, main, parent=None): 
