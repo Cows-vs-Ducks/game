@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import sys
-from deta import Deta    
+from deta import Deta
         
 class main(QWidget):
     def __init__(self, parent=None):
