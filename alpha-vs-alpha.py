@@ -21,6 +21,20 @@ class Svg(QWidget):
         self.setLayout(ly)
 
         self.show()
+        
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Right:
+            self.right()
+        elif event.key() == Qt.Key_Down:
+            self.down()
+        elif event.key() == Qt.Key_Left:
+            self.left()
+        elif event.key() == Qt.Key_Up:
+            self.up()
+        else:
+            pass
+        
+        event.accept()
 
 app = QApplication(sys.argv)
 svg = Svg()
