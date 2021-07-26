@@ -5,18 +5,20 @@ from PyQt5.QtSvg import *
 import sys
 
 class Svg(QWidget):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+    def __init__(self, app, parent=None):
+        super().__init__(parent, app)
 
         ly = QGridLayout()
 
+        size = app.desktop()
+        
         pic = QSvgWidget("cow.svg")
         pic.setFixedSize(175, 200)
-        pic.move(0, 0)
+        pic.move(size.width(), size.height()/2)
         
         pic2 = QSvgWidget("cow.svg")
         pic2.setFixedSize(175, 200)
-        pic2.move(0, 0)
+        pic2.move(0, size.height()/2)
         
         self.setLayout(ly)
 
@@ -35,9 +37,17 @@ class Svg(QWidget):
             pass
         
         event.accept()
+        
+    def right(self):
+        pass
+    
+    def down(self):
+        pass
+    
+    def left():
 
 app = QApplication(sys.argv)
-svg = Svg()
+svg = Svg(app)
 #svg.setGeometry(app.desktop())
 svg.setWindowTitle("Cows vs. Ducks")
 svg.show()
