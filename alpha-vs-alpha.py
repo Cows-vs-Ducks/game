@@ -12,11 +12,11 @@ class Svg(QWidget):
 
         pic = QSvgWidget("cow.svg")
         pic.setFixedSize(175, 200)
-        ly.addWidget(pic, 0, 0)
-
+        pic.move(0, 0)
+        
         pic2 = QSvgWidget("cow.svg")
         pic2.setFixedSize(175, 200)
-        ly.addWidget(pic2, 0, 1)
+        pic2.move(0, 0)
         
         self.setLayout(ly)
 
