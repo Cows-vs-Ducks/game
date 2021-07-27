@@ -59,8 +59,11 @@ class Svg(QWidget):
         pass
 
 app = QApplication([])
-os.remove("width.cvd")
-os.remove("height.cvd")
+try:
+    os.remove("width.cvd")
+    os.remove("height.cvd")
+except:
+    pass
 filew = open("width.cvd", "a")
 filew.write(str(app.desktop().width()))
 filew.close()
