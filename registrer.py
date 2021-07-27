@@ -56,7 +56,7 @@ class login(QWidget):
     def logii(self):
         passwwd = self.ps1.text()
         ussee = self.us1.text()
-        deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR") # 3) create and use as many DBs as you want!
+        deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
         users = deta.Base("user")
         user = users.get(ussee)
         try:
@@ -77,12 +77,12 @@ class login(QWidget):
             else:
                 msgBox = QMessageBox()
                 msgBox.setText("41: Du konntest nicht angemeldet werden.")
-                msgBox.setInformativeText("Dein Passwort ist falsch. Wenn das Problem weiterhin besteht oder wenn du dein Passwort vergessen hasst, schreibe uns den Fehlercode per Mail, zusammen mit der E-Mail-Adresse, die du bei der Registrierung angegeben hast, damit wir Prüfen können, ob du es bist. Wir senden dir dann dein Passwort per Mail zu.")
+                msgBox.setInformativeText("Dein Passwort ist falsch. Wenn das Problem weiterhin besteht oder wenn du dein Passwort vergessen hasst, sende uns den Fehlercode per Mail an cows.vs.ducks@gmail.com. Wir senden dir dann dein Passwort an die E-Mail-Adressse, die du bei der Registrierung angegeben hast.")
                 msgBox.exec_()
         except:
             msgBox = QMessageBox()
             msgBox.setText("42: Du konntest nicht angemeldet werden.")
-            msgBox.setInformativeText("Der Benutzername wurde nicht in unserer Datenbank gefunden. Falls dieser Fehler weiterhin besteht, schreibe uns den Fehlercode und deinen Benutzernamen.")
+            msgBox.setInformativeText("Der Benutzername wurde nicht in unserer Datenbank gefunden. Falls dieser Fehler weiterhin besteht, sende uns den Fehlercode und deinen Benutzernamen per Mail an cows.vs.ducks@gmail.com.")
             msgBox.exec_()
 
 class registrer(QWidget): 
