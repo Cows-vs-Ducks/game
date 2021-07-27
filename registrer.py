@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-import sys
+import sys, os
 from deta import Deta    
         
 class main(QWidget):
@@ -62,7 +62,11 @@ class login(QWidget):
         try:
             password = user["passwort"]
             if password == passwwd:
-                datei = open("user.txt", "a")
+                try:
+                    os.remove("user.cvd")
+                except:
+                    pass
+                datei = open("user.cvd", "a")
                 datei.write(ussee)
                 datei.close()
                 msgBox = QMessageBox()
@@ -161,6 +165,7 @@ class registrer(QWidget):
                           "moneten": "0",
                           "level": "1",
                           "waffen": "standart",
+                          "tränke": "False",
                           "status": "gamer"
             })
             msgBoxr = QMessageBox()
