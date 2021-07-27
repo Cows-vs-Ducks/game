@@ -12,6 +12,9 @@ class Svg(QWidget):
 
         size = app.desktop()
         
+        self.stepw = size.width() / 20
+        self.steph = size.height() / 15
+        
         pic = QSvgWidget("cow.svg")
         pic.setFixedSize(175, 200)
         pic.move(size.width(), size.height()/2)
