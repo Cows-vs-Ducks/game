@@ -44,7 +44,11 @@ class Svg(QWidget):
     def down(self):
         pass
     
-    def left():
+    def left(self):
+        pass
+    
+    def up(self):
+        pass
 
 app = QApplication(sys.argv)
 svg = Svg(app)
