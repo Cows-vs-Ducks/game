@@ -10,23 +10,23 @@ class Svg(QWidget):
 
         ly = QGridLayout()
 
-        fileh = open("height.cvd", "r")
-        self.height = fileh.read()
-        fileh.close()
-        filew = open("width.cvd", "r")
-        self.width = filew.read()
-        filew.close()
+        fileh1 = open("height.cvd", "r")
+        self.height = fileh1.read()
+        fileh1.close()
+        filew1 = open("width.cvd", "r")
+        self.width = filew1.read()
+        filew1.close()
         
         self.stepw = int(self.width) / 20
-        self.steph = int(self.height()) / 15
+        self.steph = int(self.height) / 15
         
         pic = QSvgWidget("cow.svg")
         pic.setFixedSize(175, 200)
-        pic.move(int(self.width()), int(self.height()) / 2)
+        pic.move(int(self.width), int(self.height) / 2)
         
         pic2 = QSvgWidget("cow.svg")
         pic2.setFixedSize(175, 200)
-        pic2.move(0, int(self.height()) / 2)
+        pic2.move(0, int(self.height) / 2)
         
         self.setLayout(ly)
 
