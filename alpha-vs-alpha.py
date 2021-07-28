@@ -25,9 +25,12 @@ class Svg(QWidget):
         self.left = "16777234"
         self.right = "16777236"
         
+        self.cowx = 0
+        self.cowy = int(self.height) / 2
+        
         pic = QSvgWidget("cow.svg", self) # Cow
         pic.setFixedSize(175, 200)
-        pic.move(0, int(self.height) / 2)
+        pic.move(0, )
         
         pic2 = QSvgWidget("cow.svg", self) # Duck
         pic2.setFixedSize(175, 200)
