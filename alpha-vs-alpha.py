@@ -22,8 +22,8 @@ class Svg(QWidget):
         
         self.up = "16777235"
         self.down = "16777237"
-        self.left = 
-        self.right = 
+        self.left = "16777234"
+        self.right = "16777236"
         
         pic = QSvgWidget("cow.svg", self) # Cow
         pic.setFixedSize(175, 200)
