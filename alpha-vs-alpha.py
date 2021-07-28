@@ -18,10 +18,12 @@ class Svg(QWidget):
         pic = QSvgWidget("cow.svg")
         pic.setFixedSize(175, 200)
         pic.move(size.width(), size.height()/2)
+        pic.show()
         
         pic2 = QSvgWidget("cow.svg")
         pic2.setFixedSize(175, 200)
         pic2.move(0, size.height()/2)
+        pic2.show()
         
         self.setLayout(ly)
 
