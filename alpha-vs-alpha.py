@@ -20,8 +20,8 @@ class Svg(QWidget):
         self.stepw = int(self.width) / 20
         self.steph = int(self.height) / 15
         
-        self.up = 
-        self.down = 
+        self.up = "16777235"
+        self.down = "16777237"
         self.left = 
         self.right = 
         
