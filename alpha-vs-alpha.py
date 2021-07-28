@@ -8,7 +8,7 @@ class Svg(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        ly = QGridLayout()
+        ly = QHBoxLayout()
 
         fileh1 = open("height.cvd", "r")
         self.height = fileh1.read()
@@ -20,17 +20,18 @@ class Svg(QWidget):
         self.stepw = int(self.width) / 20
         self.steph = int(self.height) / 15
         
-        pic = QSvgWidget("cow.svg")
+        pic = QSvgWidget("cow.svg", self)
         pic.setFixedSize(175, 200)
-        pic.move(int(self.width), int(self.height) / 2)
+        pic.move(0, int(self.height) / 2)
         
-        pic2 = QSvgWidget("cow.svg")
+        pic2 = QSvgWidget("cow.svg", self)
         pic2.setFixedSize(175, 200)
-        pic2.move(0, int(self.height) / 2)
+        pic2.move(int(self.width) - 200, int(self.height) / 2)
+        
         
         self.setLayout(ly)
 
-        self.show()
+        self.showFullScreen()
         
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Right:
@@ -71,7 +72,6 @@ fileh = open("height.cvd", "a")
 fileh.write(str(app.desktop().height()))
 fileh.close()
 svg = Svg()
-#svg.setGeometry(app.desktop())
 svg.setWindowTitle("Cows vs. Ducks")
 svg.show()
 sys.exit(app.exec_())
