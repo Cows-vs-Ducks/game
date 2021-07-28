@@ -20,6 +20,11 @@ class Svg(QWidget):
         self.stepw = int(self.width) / 20
         self.steph = int(self.height) / 15
         
+        self.up = 
+        self.down = 
+        self.left = 
+        self.right = 
+        
         pic = QSvgWidget("cow.svg", self)
         pic.setFixedSize(175, 200)
         pic.move(0, int(self.height) / 2)
