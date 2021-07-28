@@ -1,3 +1,6 @@
+# event.key() in keyPressEvent(self, event)
+
+
 # hoch
 16777235
 # rechts
