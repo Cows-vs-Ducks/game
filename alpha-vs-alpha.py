@@ -20,10 +20,10 @@ class Svg(QWidget):
         self.stepw = int(self.width) / 20
         self.steph = int(self.height) / 15
         
-        self.up = "16777235"
-        self.down = "16777237"
-        self.left = "16777234"
-        self.right = "16777236"
+        self.keyUp = "16777235"
+        self.keyDown = "16777237"
+        self.keyLeft = "16777234"
+        self.keyRight = "16777236"
         
         self.cowx = 0
         self.cowy = int(self.height) / 2
@@ -44,13 +44,13 @@ class Svg(QWidget):
         self.showFullScreen()
         
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Right:
+        if str(event.key()) == self.keyRight:
             self.right()
-        elif event.key() == Qt.Key_Down:
+        elif str(event.key()) == self.keyDown:
             self.down()
-        elif event.key() == Qt.Key_Left:
+        elif str(event.key()) == self.keyLeft:
             self.left()
-        elif event.key() == Qt.Key_Up:
+        elif str(event.key()) == self.keyUp:
             self.up()
         else:
             pass
