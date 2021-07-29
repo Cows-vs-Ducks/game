@@ -152,22 +152,30 @@ class registrer(QWidget):
         pss = self.pss.text()
 
         if em != "" and em != "" and ps != "" and pss == ps:
-            deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
-            users = deta.Base("user")
-            users.insert({"key": us,
-                          "vorname": vn,
-                          "nachname": nn,
-                          "alter": ag,
-                          "geburtsdatum": gb,
-                          "benutzername": us,
-                          "email": em,
-                          "passwort": ps,
-                          "moneten": "0",
-                          "level": "1",
-                          "waffen": "standart",
-                          "tränke": "False",
-                          "status": "gamer"
-            })
+            try:
+                deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
+                users = deta.Base("user")
+                users.insert({"key": us,
+                              "vorname": vn,
+                              "nachname": nn,
+                              "alter": ag,
+                              "geburtsdatum": gb,
+                              "benutzername": us,
+                              "email": em,
+                              "passwort": ps,
+                              "moneten": "0",
+                              "level": "1",
+                              "waffen": "standart",
+                              "tränke": "False",
+                              "status": "gamer"
+                })
+            except:
+                msgBox = QMessageBox()
+                msgBox.setText("40: Du konntest nicht registriert werden.")
+                msgBox.setInformativeText("Stelle sicher, dass du mit dem Internet verbunden bist. Wenn ja, ist der Benutzername schon vergeben. Wenn das Problem weiterhin besteht , sende uns den Fehlercode und den Benutzernamen, den du haben willst per Mail an cows.vs.ducks@gmail.com.")
+")
+                msgBox.exec_()
+        
             msgBoxr = QMessageBox()
             msgBoxr.setText("Du wurdest erfolgreich registriert.")
             msgBoxr.exec_()
@@ -177,7 +185,7 @@ class registrer(QWidget):
         else:
             msgBox = QMessageBox()
             msgBox.setText("43: Du konntest nicht registriert werden.")
-            msgBox.setInformativeText("Vielleicht hast du das Passwort nicht korrekt wiederholt oder du hast nicht alle Pflichtfelder ausgefüllt. Wenn alles stimmt, und dieser Fehler weiterhin auftritt, gehe auf cows-vs-ducks.tk und schreibe uns über den Chat den Fehlercode.")
+            msgBox.setInformativeText("Vielleicht hast du das Passwort nicht korrekt wiederholt oder du hast nicht alle Pflichtfelder ausgefüllt. Wenn alles stimmt, und dieser Fehler weiterhin auftritt, sende uns den Gehlercode per Mail an cows.vs.ducks@gmail.com.")
             msgBox.exec_()
         
         
