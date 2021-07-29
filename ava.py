@@ -78,13 +78,17 @@ class Svg(QWidget):
         self.botaus()
         
     def botaus(self):
-        for x in range(0, 2):
-            self.botup()
+        if self.shootx <= self.duckx + 175 and self.shooty <= self.ducky + 200 and self.shootx >= self.duckx and self.shooty >= self.ducky:
+            for x in range(0, 2):
+                self.botup()
             
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.botdown)
-        self.timer.setSingleShot(True)
-        self.timer.start(2000) 
+            self.timer = QTimer()
+            self.timer.timeout.connect(self.botdown)
+            self.timer.setSingleShot(True)
+            self.timer.start(2000)
+            
+        else:
+            pass
     
     def botdown(self):
         self.ducky += self.steph
