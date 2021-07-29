@@ -112,16 +112,16 @@ class Svg(QWidget):
             print("getroffen")
 
     def shoot(self, user):
-        self.shootanim = QPropertyAnimation(self.ball, b"pos")
-        self.shootanim.setDuration(1000)
-        self.shootanim.setStartValue(QPoint(self.cowx, self.cowy))
-        self.shootanim.setEndValue(QPointF(self.shootx, self.shooty))
-        self.shootanim.start()
-        self.timer = QTimer()
         if user == "user":
+            self.shootanim = QPropertyAnimation(self.ball, b"pos")
+            self.shootanim.setDuration(1000)
+            self.shootanim.setStartValue(QPoint(self.cowx, self.cowy))
+            self.shootanim.setEndValue(QPointF(self.shootx, self.shooty))
+            self.shootanim.start()
+            self.timer = QTimer()
             self.timer.timeout.connect(self.checkuser)
         elif user == "bot":
-            user
+            pass
         else:
             pass
         self.timer.setSingleShot(True)
