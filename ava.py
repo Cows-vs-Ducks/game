@@ -16,7 +16,7 @@ class Svg(QWidget):
         filew1 = open("width.cvd", "r")
         self.width = filew1.read()
         filew1.close()
-
+        
         self.ball = QWidget(self)
         self.ball.setStyleSheet("background-color:black;border-radius:25px")
         self.ball.resize(50, 50)
