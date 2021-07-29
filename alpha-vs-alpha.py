@@ -2,7 +2,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtSvg import *
-import sys, os
+import sys, os, time
 
 class Svg(QWidget):
     def __init__(self, parent=None):
@@ -82,6 +82,7 @@ class Svg(QWidget):
         self.shootanim.setStartValue(QPoint(self.cowx, self.cowy))
         self.shootanim.setEndValue(QPointF(self.shootx, self.shooty))
         self.shootanim.start()
+        time.sleep(1)
         
     def right(self):
         self.cowx += self.stepw
