@@ -2,7 +2,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtSvg import *
-import sys, os, time
+import sys, os, time, random
 
 class Svg(QWidget):
     def __init__(self, parent=None):
@@ -20,6 +20,9 @@ class Svg(QWidget):
         self.ball = QWidget(self)
         self.ball.setStyleSheet("background-color:black;border-radius:25px")
         self.ball.resize(50, 50)
+        
+        self.botzu = random.randint(0, 10)
+        self.boti = 0
         
         self.stepw = int(self.width) / 20
         self.steph = int(self.height) / 15
@@ -78,14 +81,18 @@ class Svg(QWidget):
         self.botaus()
         
     def botaus(self):
-        if self.shootx <= self.duckx + 175 and self.shooty <= self.ducky + 200 and self.shootx >= self.duckx and self.shooty >= self.ducky:
-            for x in range(0, 2):
-                self.botup()
+        if self.boti >= self.botzu:
+            self.botzu = random.randint(0, 10)
+        else:
+            if self.shootx <= self.duckx + 175 and self.shooty <= self.ducky + 200 and self.shootx >= self.duckx and self.shooty >= self.ducky:
+                for x in range(0, 2):
+                    self.botup()
             
-            self.timer = QTimer()
-            self.timer.timeout.connect(self.botdown)
-            self.timer.setSingleShot(True)
-            self.timer.start(2000)
+                self.timer = QTimer()
+                self.timer.timeout.connect(self.botdown)
+                self.timer.setSingleShot(True)
+                self.timer.start(2000)
+                self.boti += 1
             
         else:
             pass
