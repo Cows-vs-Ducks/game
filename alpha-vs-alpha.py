@@ -45,6 +45,17 @@ class Svg(QWidget):
         self.setLayout(ly)
         self.setGeometry(0, 0, int(self.width), int(self.height))
         self.show()
+
+    def closeEvent(self, event):
+        msgbox = QMessageBox()
+        msgbox.setText("Bist du sicher, dass du das Spiel abbrechen willst?")
+        msgbox.setWindowTitle("Abbrechen?")
+        msgbox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        rv = msgbox.exec()
+        if rv == QMessageBox.Cancel:
+            event.ignore()
+        else:
+            event.accept()
         
     def keyPressEvent(self, event):
         if str(event.key()) == self.keyRight:
@@ -106,5 +117,6 @@ fileh.write(str(app.desktop().height()))
 fileh.close()
 svg = Svg()
 svg.setWindowTitle("Cows vs. Ducks")
+svg.setWindowIcon(QIcon("cvd-icon.png"))
 svg.show()
 sys.exit(app.exec_())
