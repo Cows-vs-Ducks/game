@@ -16,6 +16,10 @@ class Svg(QWidget):
         filew1 = open("width.cvd", "r")
         self.width = filew1.read()
         filew1.close()
+
+        self.ball = QWidget(self)
+        self.ball.setStyleSheet("background-color:black;border-radius:25px")
+        self.ball.resize(50, 50)
         
         self.stepw = int(self.width) / 20
         self.steph = int(self.height) / 15
@@ -30,18 +34,17 @@ class Svg(QWidget):
         self.duckx = int(self.width) - 200
         self.ducky = int(self.height) / 2
         
-        pic = QSvgWidget("cow.svg", self) # Cow
-        pic.setFixedSize(175, 200)
-        pic.move(self.cowx, self.cowy)
+        self.pic = QSvgWidget("cow.svg", self) # Cow
+        self.pic.setFixedSize(175, 200)
+        self.pic.move(self.cowx, self.cowy)
         
-        pic2 = QSvgWidget("cow.svg", self) # Duck
-        pic2.setFixedSize(175, 200)
-        pic2.move(self.duckx, self.ducky)
-        
+        self.pic2 = QSvgWidget("cow.svg", self) # Duck
+        self.pic2.setFixedSize(175, 200)
+        self.pic2.move(self.duckx, self.ducky)
         
         self.setLayout(ly)
-
-        self.showFullScreen()
+        self.setGeometry(0, 0, int(self.width), int(self.height))
+        self.show()
         
     def keyPressEvent(self, event):
         if str(event.key()) == self.keyRight:
@@ -56,18 +59,38 @@ class Svg(QWidget):
             pass
         
         event.accept()
+
+    def mousePressEvent(self, event):
+        self.shootx = event.x()
+        self.shooty = event.y()
+        self.shoot()
+
+    def shoot(self):
+        self.shootanim = QPropertyAnimation(self.ball, b"pos")
+        self.shootanim.setDuration(1000)
+        self.shootanim.setStartValue(QPoint(self.cowx, self.cowy))
+        self.shootanim.setEndValue(QPointF(self.shootx, self.shooty))
+        self.shootanim.start()
         
     def right(self):
-        pass
+        self.cowx += self.stepw
+        self.cowy = self.cowy
+        self.pic.move(self.cowx, self.cowy)
     
     def down(self):
-        pass
+        self.cowy += self.steph
+        self.cowx = self.cowx
+        self.pic.move(self.cowx, self.cowy)
     
     def left(self):
-        pass
+        self.cowx -= self.stepw
+        self.cowy = self.cowy
+        self.pic.move(self.cowx, self.cowy)
     
     def up(self):
-        pass
+        self.cowy -= self.steph
+        self.cowx = self.cowx
+        self.pic.move(self.cowx, self.cowy)
 
 app = QApplication([])
 try:
