@@ -75,7 +75,27 @@ class Svg(QWidget):
         self.shootx = event.x()
         self.shooty = event.y()
         self.shoot("user") # this is the user and not the bot
+        self.botaus()
+        
+    def botaus(self):
+        for x in range(0, 2):
+            self.botup()
+            
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.botdown)
+        self.timer.setSingleShot(True)
+        self.timer.start(2000) 
     
+    def botdown(self):
+        self.ducky += self.steph
+        self.duckx = self.duckx
+        self.pic2.move(self.duckx, self.ducky)
+        
+    def botup(self):
+        self.ducky -= self.steph
+        self.duckx = self.duckx
+        self.pic2.move(self.duckx, self.ducky)
+        
     def checkuser(self):
         if self.shootx <= self.duckx + 175 and self.shooty <= self.ducky + 200 and self.shootx >= self.duckx and self.shooty >= self.ducky:
             print("getroffen")
