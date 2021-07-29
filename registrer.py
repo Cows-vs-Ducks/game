@@ -165,7 +165,7 @@ class registrer(QWidget):
                               "passwort": ps,
                               "moneten": "0",
                               "level": "1",
-                              "waffen": "standart",
+                              "waffen": "1",
                               "tränke": "False",
                               "status": "gamer"
                 })
