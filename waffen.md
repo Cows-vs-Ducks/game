@@ -1,3 +1,6 @@
+# preise
+1-5 preis aufsteigen
+
 # 1
 standart Waffe. 1 Schuss, 3 sec. warten
 
