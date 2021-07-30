@@ -37,15 +37,50 @@ class Hearth(QWidget):
         self.userhearth3.setFixedSize(50, 50)
         ly.addWidget(self.userhearth3, 0, 3)
 
+        self.herrbot = 3
+        self.herruser = 3
+
         self.setLayout(ly)
         self.show()
+
+    def lesshearthbot(self):
+        if self.herruser == 3:
+            self.bothearth3.move(1000000, 1000000)
+            self.herruser = 2
+        elif self.herruser == 2:
+            self.bothearth2.move(1000000, 1000000)
+            self.herruser = 1
+        elif self.herruser == 1:
+            self.bothearth1.move(1000000, 1000000)
+            msgbox = QMessageBox()
+            msgbox.setText("Du hast Gewonnen!!!")
+            msgbox.setWindowTitle("Gewonnen")
+            msgbox.exec()
+            sys.exit()
+
+
+    def lesshearthuser(self):
+        if self.herrbot == 3:
+            self.userhearth3.move(1000000, 1000000)
+            self.herrbot = 2
+        elif self.herrbot == 2:
+            self.userhearth2.move(1000000, 1000000)
+            self.herrbot = 1
+        elif self.herrbot == 1:
+            self.userhearth1.move(1000000, 1000000)
+            msgbox = QMessageBox()
+            msgbox.setText("Du hast leider verloren. Probiere es doch einfach nochmal!")
+            msgbox.setWindowTitle("Verloren")
+            msgbox.exec()
+            sys.exit()
 
 class Svg(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
         ly = QHBoxLayout()
-        ly.addWidget(Hearth())
+        self.hearthh = Hearth()
+        ly.addWidget(self.hearthh)
 
         fileh1 = open("height.cvd", "r")
         self.height = fileh1.read()
@@ -55,6 +90,7 @@ class Svg(QWidget):
         filew1.close()
 
         self.actutime = 4
+        #self.herr = 3
         
         self.ball = QWidget(self)
         self.ball.setStyleSheet("background-color:black;border-radius:25px")
@@ -172,6 +208,7 @@ class Svg(QWidget):
         if self.shootx <= self.duckx + 175 and self.shooty <= self.ducky + 200 and self.shootx >= self.duckx and self.shooty >= self.ducky:
             print("getroffen")
             self.ball.move(1000000, 1000000)
+            self.hearthh.lesshearthbot()
         else:
             self.ball.move(1000000, 1000000)
 
@@ -179,6 +216,7 @@ class Svg(QWidget):
         if self.shootx <= self.cowx + 175 and self.shooty <= self.cowy + 200 and self.shootx >= self.cowx and self.shooty >= self.cowy:
             print("getroffen")
             self.ball.move(1000000, 1000000)
+            self.hearthh.lesshearthuser()
         else:
             self.ball.move(1000000, 1000000)
 
