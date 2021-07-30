@@ -12,6 +12,7 @@ class main(QWidget):
         self.stack = QStackedWidget()
         self.stack.addWidget(login(self))
         self.stack.addWidget(registrer(self))
+        self.stack.addWidget(Svg(self))
         
         layout = QGridLayout()
         layout.addWidget(self.stack, 0, 0)
@@ -24,6 +25,9 @@ class main(QWidget):
     
     def registrer(self):
         self.stack.setCurrentIndex(1)
+        
+    def game(self):
+        self.stack.setCurrentIndex(2)
         
 class login(QWidget):
     def __init__(self, main, parent=None):
@@ -261,7 +265,7 @@ class Hearth(QWidget):
             sys.exit()
 
 class Svg(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, main, parent=None):
         super().__init__(parent)
 
         ly = QHBoxLayout()
@@ -470,8 +474,8 @@ filew.close()
 fileh = open("height.cvd", "a")
 fileh.write(str(app.desktop().height()))
 fileh.close()
-main = Main()
-main.setWindowTitle("Cows vs. Ducks")
-main.setWindowIcon(QIcon("cvd-icon.png"))
+mainw = main()
+mainw.setWindowTitle("Cows vs. Ducks")
+mainw.setWindowIcon(QIcon("cvd-icon.png"))
 main.show()
 sys.exit(app.exec_())
