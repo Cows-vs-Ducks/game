@@ -4,11 +4,48 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtSvg import *
 import sys, os, time, random
 
+class Hearth(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        ly = QGridLayout()
+
+        self.bothearth1 = QSvgWidget("heart.svg", self)
+        self.bothearth1.setFixedSize(50, 50)
+        ly.addWidget(self.bothearth1, 0, 7)
+
+        self.bothearth2 = QSvgWidget("heart.svg", self)
+        self.bothearth2.setFixedSize(50, 50)
+        ly.addWidget(self.bothearth2, 0, 8)
+
+        self.bothearth3 = QSvgWidget("heart.svg", self)
+        self.bothearth3.setFixedSize(50, 50)
+        ly.addWidget(self.bothearth3, 0, 9)
+
+        platzhalter = QLabel()
+        ly.addWidget(platzhalter, 0, 4)
+
+        self.userhearth1 = QSvgWidget("heart.svg", self)
+        self.userhearth1.setFixedSize(50, 50)
+        ly.addWidget(self.userhearth1, 0, 1)
+
+        self.userhearth2 = QSvgWidget("heart.svg", self)
+        self.userhearth2.setFixedSize(50, 50)
+        ly.addWidget(self.userhearth2, 0, 2)
+
+        self.userhearth3 = QSvgWidget("heart.svg", self)
+        self.userhearth3.setFixedSize(50, 50)
+        ly.addWidget(self.userhearth3, 0, 3)
+
+        self.setLayout(ly)
+        self.show()
+
 class Svg(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
         ly = QHBoxLayout()
+        ly.addWidget(Hearth())
 
         fileh1 = open("height.cvd", "r")
         self.height = fileh1.read()
