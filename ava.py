@@ -78,6 +78,7 @@ class login(QWidget):
                 msgBox.setText("Willkommen zurück, " + ussee)
                 msgBox.setInformativeText("Du wurdest erfolgreich angemeldet.")
                 msgBox.exec_()
+                main.game()
                 
             else:
                 msgBox = QMessageBox()
