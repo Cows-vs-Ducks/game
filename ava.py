@@ -16,10 +16,13 @@ class Svg(QWidget):
         filew1 = open("width.cvd", "r")
         self.width = filew1.read()
         filew1.close()
+
+        self.actutime = 4
         
         self.ball = QWidget(self)
         self.ball.setStyleSheet("background-color:black;border-radius:25px")
         self.ball.resize(50, 50)
+        self.ball.move(1000000, 1000000)
         
         self.botzu = random.randint(0, 10)
         self.boti = 0
@@ -36,6 +39,8 @@ class Svg(QWidget):
         self.cowy = int(self.height) / 2
         self.duckx = int(self.width) - 200
         self.ducky = int(self.height) / 2
+
+        self.waffe = "1"
         
         self.pic = QSvgWidget("cow.svg", self) # Cow
         self.pic.setFixedSize(175, 200)
@@ -77,26 +82,36 @@ class Svg(QWidget):
     def mousePressEvent(self, event):
         self.shootx = event.x()
         self.shooty = event.y()
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.botaus)
+        self.timer.setSingleShot(True)
+        self.timer.start(1000)
         self.shoot("user") # this is the user and not the bot
         self.botaus()
+        event.accept()
         
     def botaus(self):
         if self.boti >= self.botzu:
             self.botzu = random.randint(0, 10)
+            self.boti = 0
         else:
             if self.shootx <= self.duckx + 175 and self.shooty <= self.ducky + 200 and self.shootx >= self.duckx and self.shooty >= self.ducky:
-                for x in range(0, 2):
+                for x in range(0, 4):
                     self.botup()
             
                 self.timer = QTimer()
-                self.timer.timeout.connect(self.botdown)
+                self.timer.timeout.connect(self.botback)
                 self.timer.setSingleShot(True)
                 self.timer.start(2000)
                 self.boti += 1
             
-        else:
-            pass
+            else:
+                pass
     
+    def botback(self):
+        for x in range(0, 4):
+            self.botdown()
+
     def botdown(self):
         self.ducky += self.steph
         self.duckx = self.duckx
@@ -110,24 +125,28 @@ class Svg(QWidget):
     def checkuser(self):
         if self.shootx <= self.duckx + 175 and self.shooty <= self.ducky + 200 and self.shootx >= self.duckx and self.shooty >= self.ducky:
             print("getroffen")
+            self.ball.move(1000000, 1000000)
+        else:
+            self.ball.move(1000000, 1000000)
 
     def shoot(self, user):
         if user == "user":
-            if waffe == "1"
-                self.shootanim = QPropertyAnimation(self.ball, b"pos")
-                self.shootanim.setDuration(1000)
-                self.shootanim.setStartValue(QPoint(self.cowx, self.cowy))
-                self.shootanim.setEndValue(QPointF(self.shootx, self.shooty))
-                self.shootanim.start()
-                self.timer = QTimer()
-                self.timer.timeout.connect(self.checkuser)
-                time.sleep(3)
+            if self.actutime - time.time() >= 3 or self.actutime == 4:
+                if self.waffe == "1":
+                    self.shootanim = QPropertyAnimation(self.ball, b"pos")
+                    self.shootanim.setDuration(1000)
+                    self.shootanim.setStartValue(QPoint(self.cowx, self.cowy))
+                    self.shootanim.setEndValue(QPointF(self.shootx, self.shooty))
+                    self.shootanim.start()
+                    self.timer = QTimer()
+                    self.timer.timeout.connect(self.checkuser)
+                    self.timer.setSingleShot(True)
+                    self.timer.start(1000) 
+                    self.actutume = time.time()
         elif user == "bot":
             pass
         else:
             pass
-        self.timer.setSingleShot(True)
-        self.timer.start(1000) 
         
     def right(self):
         self.cowx += self.stepw
