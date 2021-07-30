@@ -35,6 +35,9 @@ class login(QWidget):
         
         llly = QGridLayout()
         
+        if os.path.isfile(user.cvd):
+            main.game()
+        
         us = QLabel("Benutzername *")
         self.us1 = QLineEdit()
         ps = QLabel("Passwort *")
