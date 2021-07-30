@@ -32,7 +32,7 @@ class Hearth(QWidget):
         self.userhearth2 = QSvgWidget("heart.svg", self)
         self.userhearth2.setFixedSize(50, 50)
         ly.addWidget(self.userhearth2, 0, 2)
-
+        
         self.userhearth3 = QSvgWidget("heart.svg", self)
         self.userhearth3.setFixedSize(50, 50)
         ly.addWidget(self.userhearth3, 0, 3)
