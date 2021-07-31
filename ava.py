@@ -35,7 +35,7 @@ class login(QWidget):
         
         llly = QGridLayout()
         
-        if os.path.isfile(user.cvd):
+        if os.path.isfile("user.cvd"):
             main.game()
         
         us = QLabel("Benutzername *")
@@ -182,7 +182,6 @@ class registrer(QWidget):
                 msgBox = QMessageBox()
                 msgBox.setText("40: Du konntest nicht registriert werden.")
                 msgBox.setInformativeText("Stelle sicher, dass du mit dem Internet verbunden bist. Wenn ja, ist der Benutzername schon vergeben. Wenn das Problem weiterhin besteht , sende uns den Fehlercode und den Benutzernamen, den du haben willst per Mail an cows.vs.ducks@gmail.com.")
-")
                 msgBox.exec_()
         
             msgBoxr = QMessageBox()
@@ -327,8 +326,7 @@ class Svg(QWidget):
         self.botshoot.start(4000)
         
         self.setLayout(ly)
-        self.setGeometry(0, 0, int(self.width), int(self.height))
-        self.show()
+        #self.setGeometry(0, 0, int(self.width), int(self.height))
 
     def closeEvent(self, event):
         msgbox = QMessageBox()
@@ -481,5 +479,5 @@ fileh.close()
 mainw = main()
 mainw.setWindowTitle("Cows vs. Ducks")
 mainw.setWindowIcon(QIcon("cvd-icon.png"))
-main.show()
+mainw.show()
 sys.exit(app.exec_())
