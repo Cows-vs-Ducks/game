@@ -173,7 +173,6 @@ class registrer(QWidget):
                 msgBox = QMessageBox()
                 msgBox.setText("40: Du konntest nicht registriert werden.")
                 msgBox.setInformativeText("Stelle sicher, dass du mit dem Internet verbunden bist. Wenn ja, ist der Benutzername schon vergeben. Wenn das Problem weiterhin besteht , sende uns den Fehlercode und den Benutzernamen, den du haben willst per Mail an cows.vs.ducks@gmail.com.")
-")
                 msgBox.exec_()
         
             msgBoxr = QMessageBox()
