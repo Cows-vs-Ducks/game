@@ -22,9 +22,11 @@ class main(QWidget):
         
     def login(self):
         self.stack.setCurrentIndex(0)
+        Svg(self).botstop()
     
     def registrer(self):
         self.stack.setCurrentIndex(1)
+        Svg(self).botstop()
         
     def game(self):
         self.stack.setCurrentIndex(2)
