@@ -334,6 +334,7 @@ class Svg(QWidget):
         
         self.pic2 = QSvgWidget("cow.svg", self) # Duck
         self.pic2.setFixedSize(175, 200)
+        self.pic.move(self.cowx, self.cowy)
         
         self.timer = QTimer()
         self.timer.timeout.connect(self.moveduckback)
