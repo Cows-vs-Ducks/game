@@ -64,6 +64,12 @@ class login(QWidget):
         
         self.setLayout(llly)
         
+    def logout(self):
+        try:
+            os.remove("user.cvd")
+        except:
+            pass
+        
     def logii(self):
         passwwd = self.ps1.text()
         ussee = self.us1.text()
