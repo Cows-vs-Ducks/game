@@ -28,6 +28,7 @@ class main(QWidget):
         
     def game(self):
         self.stack.setCurrentIndex(2)
+        Svg(self).go()
         
 class login(QWidget):
     def __init__(self, main, parent=None):
@@ -321,12 +322,13 @@ class Svg(QWidget):
         self.pic2.setFixedSize(175, 200)
         self.pic2.move(self.duckx, self.ducky)
         
+        self.setLayout(ly)
+        #self.setGeometry(0, 0, int(self.width), int(self.height))
+        
+    def go(self):
         self.botshoot = QTimer()
         self.botshoot.timeout.connect(self.shootbot)
         self.botshoot.start(4000)
-        
-        self.setLayout(ly)
-        #self.setGeometry(0, 0, int(self.width), int(self.height))
 
     def closeEvent(self, event):
         msgbox = QMessageBox()
