@@ -329,6 +329,12 @@ class Svg(QWidget):
         self.botshoot = QTimer()
         self.botshoot.timeout.connect(self.shootbot)
         self.botshoot.start(4000)
+        
+    def botstop(self):
+        try:
+            self.botshoot.stop()
+        except:
+            pass
 
     def closeEvent(self, event):
         msgbox = QMessageBox()
