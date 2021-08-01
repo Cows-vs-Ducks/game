@@ -238,12 +238,18 @@ class Hearth(QWidget):
         self.userhearth3 = QSvgWidget("heart.svg", self)
         self.userhearth3.setFixedSize(50, 50)
         ly.addWidget(self.userhearth3, 0, 3)
+        
+        self.herzen = 3 # Herzen des users können durch tranke auf 4 gesteigert werden.
 
         self.herrbot = 3
-        self.herruser = 3
+        self.herruser = self.herzen
 
         self.setLayout(ly)
         self.show()
+        
+    def reseth(self):
+        self.herrbot = 3
+        self.herruser = self.herzen
 
     def lesshearthbot(self):
         if self.herruser == 3:
@@ -340,6 +346,7 @@ class Svg(QWidget):
         
     def botstop(self):
         try:
+            self.hearthh.reseth()
             self.botshoot.stop()
         except:
             pass
