@@ -334,7 +334,10 @@ class Svg(QWidget):
         
         self.pic2 = QSvgWidget("cow.svg", self) # Duck
         self.pic2.setFixedSize(175, 200)
-        self.pic2.move(self.duckx, self.ducky)
+        
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.moveduckback)
+        self.timer.start(10000)
         
         self.setLayout(ly)
         #self.setGeometry(0, 0, int(self.width), int(self.height))
@@ -350,6 +353,11 @@ class Svg(QWidget):
             self.botshoot.stop()
         except:
             pass
+
+    def moveduckback(self):
+        self.duckx = int(self.width) - 200
+        self.ducky = int(self.height) / 2
+        self.pic.move(self.cowx, self.cowy)
 
     def closeEvent(self, event):
         msgbox = QMessageBox()
