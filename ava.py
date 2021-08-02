@@ -31,7 +31,7 @@ class main(QWidget):
         except:
             msgBox = QMessageBox()
             msgBox.setText("44: Fehler")
-            msgBox.setInformativeText("Ein Fehler ist aufgetreten. Eventuell bist du nicht angemeldet. Falls diieser Fehler weiterhin besteht, sende uns den Felercode per Mail an cows.vs.ducks@gmail.com.")
+            msgBox.setInformativeText("Ein Fehler ist aufgetreten. Eventuell bist du nicht angemeldet. Falls dieser Fehler weiterhin besteht, sende uns den Felercode per Mail an cows.vs.ducks@gmail.com.")
             msgBox.exec_()
         
     def login(self):
@@ -198,7 +198,7 @@ class registrer(QWidget):
             except:
                 msgBox = QMessageBox()
                 msgBox.setText("40: Du konntest nicht registriert werden.")
-                msgBox.setInformativeText("Stelle sicher, dass du mit dem Internet verbunden bist. Wenn ja, ist der Benutzername schon vergeben. Wenn das Problem weiterhin besteht , sende uns den Fehlercode und den Benutzernamen, den du haben willst per Mail an cows.vs.ducks@gmail.com.")
+                msgBox.setInformativeText("Stelle sicher, dass du mit dem Internet verbunden bist. Wenn ja, ist der Benutzername schon vergeben. Wenn das Problem weiterhin besteht, sende uns den Fehlercode und den Benutzernamen, den du haben willst per Mail an cows.vs.ducks@gmail.com.")
                 msgBox.exec_()
         
             msgBoxr = QMessageBox()
@@ -210,7 +210,7 @@ class registrer(QWidget):
         else:
             msgBox = QMessageBox()
             msgBox.setText("43: Du konntest nicht registriert werden.")
-            msgBox.setInformativeText("Vielleicht hast du das Passwort nicht korrekt wiederholt oder du hast nicht alle Pflichtfelder ausgefüllt. Wenn alles stimmt, und dieser Fehler weiterhin auftritt, sende uns den Gehlercode per Mail an cows.vs.ducks@gmail.com.")
+            msgBox.setInformativeText("Vielleicht hast du das Passwort nicht korrekt wiederholt oder du hast nicht alle Pflichtfelder ausgefüllt. Wenn alles stimmt, und dieser Fehler weiterhin auftritt, sende uns den Fehlercode per Mail an cows.vs.ducks@gmail.com.")
             msgBox.exec_()
         
 
