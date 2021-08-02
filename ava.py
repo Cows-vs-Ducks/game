@@ -298,6 +298,15 @@ class Hearth(QWidget):
             msgbox.setText("Du hast Gewonnen!!!")
             msgbox.setWindowTitle("Gewonnen")
             msgbox.exec()
+            datei = open("user.cvd", "r")
+            uss = datei.read()
+            datei.close()
+            deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
+            users = deta.Base("user")
+            user = users.get(uss) # the user
+            mon = user["moneten"]
+            mon += 100
+            users.update({"moneten": mon}, "WildCat")
             main.menug()
 
 
