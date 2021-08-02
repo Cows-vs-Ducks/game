@@ -20,6 +20,20 @@ class main(QWidget):
         self.setLayout(layout)
         self.show()
         
+    def logout(self):
+        try:
+            os.remove("user.cvd")
+            msgBox = QMessageBox()
+            msgBox.setText("Fertig")
+            msgBox.setInformativeText("Du wurdest erfolgreich ausgeloggt.")
+            msgBox.exec_()
+            self.login()
+        except:
+            msgBox = QMessageBox()
+            msgBox.setText("44: Fehler")
+            msgBox.setInformativeText("Ein Fehler ist aufgetreten. Eventuell bist du nicht angemeldet. Falls diieser Fehler weiterhin besteht, sende uns den Felercode per Mail an cows.vs.ducks@gmail.com.")
+            msgBox.exec_()
+        
     def login(self):
         self.stack.setCurrentIndex(0)
         Svg(self).botstop()
@@ -63,12 +77,6 @@ class login(QWidget):
         llly.addWidget(rg, 5, 2)
         
         self.setLayout(llly)
-        
-    def logout(self):
-        try:
-            os.remove("user.cvd")
-        except:
-            pass
         
     def logii(self):
         passwwd = self.ps1.text()
