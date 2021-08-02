@@ -298,7 +298,7 @@ class Hearth(QWidget):
             msgbox.setText("Du hast Gewonnen!!!")
             msgbox.setWindowTitle("Gewonnen")
             msgbox.exec()
-            sys.exit()
+            main.menug()
 
 
     def lesshearthuser(self):
@@ -314,7 +314,7 @@ class Hearth(QWidget):
             msgbox.setText("Du hast leider verloren. Probiere es doch einfach nochmal!")
             msgbox.setWindowTitle("Verloren")
             msgbox.exec()
-            sys.exit()
+            main.menug()
 
 class Svg(QWidget):
     def __init__(self, main, parent=None):
