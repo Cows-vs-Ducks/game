@@ -13,6 +13,7 @@ class main(QWidget):
         self.stack.addWidget(login(self))
         self.stack.addWidget(registrer(self))
         self.stack.addWidget(Svg(self))
+        self.stack.addWidget(menu(self))
         
         layout = QGridLayout()
         layout.addWidget(self.stack, 0, 0)
@@ -46,6 +47,31 @@ class main(QWidget):
         self.stack.setCurrentIndex(2)
         Svg(self).go()
         
+    def menug(self):
+        self.stack.setCurrentIndex(3)
+        Svg(self).botstop()
+        
+class menu(QWidget):
+    def __init__(self, main, parent=None):
+        super().__init__(parent)
+        ly = QVBoxLayout()
+        
+        logout = QPushButton("Logout")
+        logout.clicked.connect(main.logout)
+        ly.addWidget(logout)
+        
+        avag = QPushButton("Alpha vs. Alpha")
+        avag.clicked.connect(main.game)
+        ly.addWidget(avag)
+        
+        acc = QPushButton("Einstellungen (bald)")
+        ly.addWidget(acc)
+        
+        store = QPushButton("Market (bald)")
+        ly.addWidget(store)
+        
+        self.setLayout(ly)
+        
 class login(QWidget):
     def __init__(self, main, parent=None):
         super().__init__(parent)
@@ -53,7 +79,7 @@ class login(QWidget):
         llly = QGridLayout()
         
         if os.path.isfile("user.cvd"):
-            main.game()
+            main.menug()
         
         us = QLabel("Benutzername *")
         self.us1 = QLineEdit()
@@ -98,7 +124,7 @@ class login(QWidget):
                 msgBox.setText("Willkommen zurück, " + ussee)
                 msgBox.setInformativeText("Du wurdest erfolgreich angemeldet.")
                 msgBox.exec_()
-                main.game()
+                main.menug()
                 
             else:
                 msgBox = QMessageBox()
