@@ -138,6 +138,7 @@ class market(QWidget):
         self.setLayout(ly)
         
     def witz(self, item):
+        self.monn.setText(str(moni) + " m")
         wt = item.text().replace("   preis: 10 m", "")
         print(self.witze[wt])
         datei = open("user.cvd", "r")
