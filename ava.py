@@ -78,7 +78,8 @@ class menu(QWidget):
         acc = QPushButton("Einstellungen (bald)")
         ly.addWidget(acc)
         
-        store = QPushButton("Market (bald)")
+        store = QPushButton("Market")
+        store.clicked.connect(main.store)
         ly.addWidget(store)
         
         self.setLayout(ly)
