@@ -87,10 +87,6 @@ class menu(QWidget):
         
 class market(QWidget):
     def __init__(self, main, parent=None):
-        super().__init__(parent)   
-        
-class main(QWidget):
-    def __init__(self, parent=None):
         super().__init__(parent)
                
         ly = QVBoxLayout()
