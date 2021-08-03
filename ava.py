@@ -15,6 +15,7 @@ class main(QWidget):
         self.stack.addWidget(registrer(self))
         self.stack.addWidget(self.ava)
         self.stack.addWidget(menu(self))
+        self.stack.addWidget(market(self))
         
         layout = QGridLayout()
         layout.addWidget(self.stack, 0, 0)
@@ -56,6 +57,11 @@ class main(QWidget):
         self.stack.setCurrentIndex(3)
         self.ava.botstop()
         
+    def store(self):
+        self.setGeometry(20, 20, 120, 95)
+        self.stack.setCurrentIndex(4)
+        self.ava.botstop()
+        
 class menu(QWidget):
     def __init__(self, main, parent=None):
         super().__init__(parent)
@@ -74,6 +80,14 @@ class menu(QWidget):
         
         store = QPushButton("Market (bald)")
         ly.addWidget(store)
+        
+        self.setLayout(ly)
+        
+class market(QWidget):
+    def __init__(self, main, parent=None):
+        super().__init__(parent)
+        
+        ly = QGridLayout()
         
         self.setLayout(ly)
         
