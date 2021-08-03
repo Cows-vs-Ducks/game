@@ -2,7 +2,8 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtSvg import *
-import sys, os, time, random
+from urllib.request import *
+import sys, os, time, random, json
 from deta import Deta    
         
 class main(QWidget):
@@ -86,11 +87,71 @@ class menu(QWidget):
         
 class market(QWidget):
     def __init__(self, main, parent=None):
-        super().__init__(parent)
+        super().__init__(parent)   
         
-        ly = QGridLayout()
+class main(QWidget):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+               
+        ly = QVBoxLayout()
+        
+        waff1 = QLabel("Waffen")
+        ly.addWidget(waff1)
+        
+        self.waff = QListWidget()
+        ly.addWidget(self.waff)
+        
+        tr1 = QLabel("Tränke")
+        ly.addWidget(tr1)
+        
+        self.tr = QListWidget()
+        ly.addWidget(self.tr)
+        
+        cha1 = QLabel("Charaktere")
+        ly.addWidget(cha1)
+        
+        self.cha = QListWidget()
+        ly.addWidget(self.cha)
+        
+        wtz = QLabel("Witze")
+        ly.addWidget(wtz)
+        
+        self.wtz1 = QListWidget()
+        ly.addWidget(self.wtz1)
+        
+        self.wtz1.itemClicked.connect(self.witz)
+        
+        a = urlopen("https://raw.githubusercontent.com/Cows-vs-Ducks/game/main/ww.json").read().decode()
+        self.witze = json.loads(a)
+        i = 0
+        for witz1 in self.witze:
+            i += 1
+            self.wtz1.addItem(str(i) + "   preis: 10 m")
         
         self.setLayout(ly)
+        
+    def witz(self, item):
+        wt = item.text().replace("   preis: 10 m", "")
+        print(self.witze[wt])
+        datei = open("user.cvd", "r")
+        uss = datei.read()
+        datei.close()
+        deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
+        users = deta.Base("user")
+        user = users.get(uss) # the user
+        mon = user["moneten"]
+        moni = int(mon)
+        moni -= 10
+        if moni >= 0:
+            users.update({"moneten": moni}, uss)
+            msgbox = QMessageBox()
+            msgbox.setText(self.witze[wt])
+            msgbox.setWindowTitle("Dein Witz")
+            msgbox.exec()
+        else:
+            msgbox = QMessageBox()
+            msgbox.setText("Du hast leider nicht genug Moneten.")
+            msgbox.exec()
         
 class login(QWidget):
     def __init__(self, main, parent=None):
