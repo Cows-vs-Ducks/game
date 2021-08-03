@@ -9,10 +9,11 @@ class main(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         
+        self.ava = Svg(self)
         self.stack = QStackedWidget()
         self.stack.addWidget(login(self))
         self.stack.addWidget(registrer(self))
-        self.stack.addWidget(Svg(self))
+        self.stack.addWidget(self.ava)
         self.stack.addWidget(menu(self))
         
         layout = QGridLayout()
@@ -36,20 +37,24 @@ class main(QWidget):
             msgBox.exec_()
         
     def login(self):
+        self.setGeometry(20, 20, 120, 95)
         self.stack.setCurrentIndex(0)
-        Svg(self).botstop()
+        self.ava.botstop()
     
     def registrer(self):
+        self.setGeometry(20, 20, 120, 95)
         self.stack.setCurrentIndex(1)
-        Svg(self).botstop()
+        self.ava.botstop()
         
     def game(self):
+        self.showFullScreen()
+        self.ava.go()
         self.stack.setCurrentIndex(2)
-        Svg(self).go()
         
     def menug(self):
+        self.setGeometry(20, 20, 120, 95)
         self.stack.setCurrentIndex(3)
-        Svg(self).botstop()
+        self.ava.botstop()
         
 class menu(QWidget):
     def __init__(self, main, parent=None):
@@ -77,9 +82,8 @@ class login(QWidget):
         super().__init__(parent)
         
         llly = QGridLayout()
+        self.main = main
         
-        if os.path.isfile("user.cvd"):
-            main.menug()
         
         us = QLabel("Benutzername *")
         self.us1 = QLineEdit()
@@ -103,6 +107,8 @@ class login(QWidget):
         llly.addWidget(rg, 5, 2)
         
         self.setLayout(llly)
+        if os.path.isfile("user.cvd"):
+            main.menug()
         
     def logii(self):
         passwwd = self.ps1.text()
@@ -124,7 +130,7 @@ class login(QWidget):
                 msgBox.setText("Willkommen zurück, " + ussee)
                 msgBox.setInformativeText("Du wurdest erfolgreich angemeldet.")
                 msgBox.exec_()
-                main.menug()
+                main.menug(self.main)
                 
             else:
                 msgBox = QMessageBox()
@@ -241,10 +247,11 @@ class registrer(QWidget):
         
 
 class Hearth(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, main, parent=None):
         super().__init__(parent)
 
         ly = QGridLayout()
+        self.main = main
 
         self.bothearth1 = QSvgWidget("heart.svg", self)
         self.bothearth1.setFixedSize(50, 50)
@@ -305,9 +312,10 @@ class Hearth(QWidget):
             users = deta.Base("user")
             user = users.get(uss) # the user
             mon = user["moneten"]
-            mon += 100
-            users.update({"moneten": mon}, "WildCat")
-            main.menug()
+            moni = int(mon)
+            moni += 100
+            users.update({"moneten": moni}, uss)
+            main.menug(self.main)
 
 
     def lesshearthuser(self):
@@ -323,14 +331,15 @@ class Hearth(QWidget):
             msgbox.setText("Du hast leider verloren. Probiere es doch einfach nochmal!")
             msgbox.setWindowTitle("Verloren")
             msgbox.exec()
-            main.menug()
+            main.menug(self.main)
 
 class Svg(QWidget):
     def __init__(self, main, parent=None):
         super().__init__(parent)
 
+        self.main = main
         ly = QHBoxLayout()
-        self.hearthh = Hearth()
+        self.hearthh = Hearth(self.main)
         ly.addWidget(self.hearthh)
 
         fileh1 = open("height.cvd", "r")
@@ -379,11 +388,12 @@ class Svg(QWidget):
         self.pic2.setFixedSize(175, 200)
         self.pic.move(self.duckx, self.ducky)
         
-        self.timer = QTimer()
-        self.timer.timeout.connect(self.moveduckback)
-        self.timer.start(10000)
+        self.timeeer = QTimer()
+        self.timeeer.timeout.connect(self.moveduckback)
+        self.timeeer.start(7000)
         
         self.setLayout(ly)
+        self.showFullScreen()
         #self.setGeometry(0, 0, int(self.width), int(self.height))
         
     def go(self):
@@ -401,7 +411,7 @@ class Svg(QWidget):
     def moveduckback(self):
         self.duckx = int(self.width) - 200
         self.ducky = int(self.height) / 2
-        self.pic.move(self.cowx, self.cowy)
+        self.pic2.move(self.duckx, self.ducky)
 
     def closeEvent(self, event):
         msgbox = QMessageBox()
