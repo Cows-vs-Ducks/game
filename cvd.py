@@ -387,7 +387,24 @@ class Hearth(QWidget):
         self.userhearth3.setFixedSize(50, 50)
         ly.addWidget(self.userhearth3, 0, 3)
         
-        self.herzen = 3 # Herzen des users können durch tranke auf 4 gesteigert werden.
+        datei = open("user.cvd", "r")
+        uss = datei.read()
+        datei.close()
+        deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
+        users = deta.Base("user")
+        user = users.get(uss) # the user
+        tr = user["tränke"]
+        trs = list(str(mon))
+        if "1" in trs:
+            trs.remove("1")
+            upd = "".join(trs)
+            users.update({"tränke": upd}, uss)
+            self.herzen = 4
+            self.userhearth4 = QSvgWidget("heart.svg", self)
+            self.userhearth4.setFixedSize(50, 50)
+            ly.addWidget(self.userhearth4, 0, 4)
+        else:
+            self.herzen = 3
 
         self.herrbot = 3
         self.herruser = self.herzen
@@ -426,7 +443,10 @@ class Hearth(QWidget):
 
 
     def lesshearthuser(self):
-        if self.herrbot == 3:
+        if self.herrbot == 4:
+            self.userhearth4.move(1000000, 1000000)
+            self.herrbot == 3
+        elif self.herrbot == 3:
             self.userhearth3.move(1000000, 1000000)
             self.herrbot = 2
         elif self.herrbot == 2:
