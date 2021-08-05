@@ -154,7 +154,27 @@ class market(QWidget):
     def trank(self, item):
         tr = item.text().replace("   preis: 10 m", "")
         if tr == "Herztrank(4 Herzen)":
-            trn = 1
+            datei = open("user.cvd", "r")
+            uss = datei.read()
+            datei.close()
+            deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
+            users = deta.Base("user")
+            user = users.get(uss) # the user
+            mon = user["moneten"]
+            moni = int(mon)
+            moni -= 200
+            if moni >= 0:
+                mon = user["tränke"]
+                moni = str(mon) + "1"
+                users.update({"tränke": moni}, uss)
+            else:
+                msgbox = QMessageBox()
+                msgbox.setText("Du hast leider nicht genug Moneten.")
+                msgbox.exec()
+        else:
+            msgbox = QMessageBox()
+            msgbox.setText("Ein Fehler ist aufgetreten. Bitte probiere es nochmal. Falls dieser Fehler weiterhin auftritt, sende uns eine Mail an cows.vs.ducks@gmail.com.")
+            msgbox.exec()
         
 
     def getmon(self):
