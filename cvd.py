@@ -340,7 +340,7 @@ class registrer(QWidget):
                               "moneten": "0",
                               "level": "1",
                               "waffen": "1",
-                              "tränke": "False",
+                              "tränke": "",
                               "status": "gamer"
                 })
             except:
