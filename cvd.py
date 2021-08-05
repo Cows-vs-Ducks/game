@@ -129,7 +129,10 @@ class market(QWidget):
         self.wtz1 = QListWidget()
         ly.addWidget(self.wtz1)
         
+        self.tr.itemClicked.connect(self.trank)
         self.wtz1.itemClicked.connect(self.witz)
+        
+        self.tr.addItem("Herztrank(4 Herzen)" + "   preis: 200 m")
         
         a = urlopen("https://raw.githubusercontent.com/Cows-vs-Ducks/game/main/ww.json").read().decode()
         self.witze = json.loads(a)
@@ -147,6 +150,12 @@ class market(QWidget):
 
     def stopstore(self):
         self.timeeeer.stop()
+        
+    def trank(self, item):
+        tr = item.text().replace("   preis: 10 m", "")
+        if tr == "Herztrank(4 Herzen)":
+            trn = 1
+        
 
     def getmon(self):
         try:
