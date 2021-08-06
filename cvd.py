@@ -21,6 +21,7 @@ class main(QWidget):
         self.stack.addWidget(self.ava)
         self.stack.addWidget(menu(self))
         self.stack.addWidget(self.shop)
+        self.stack.addWidget(message(self))
         
         layout = QGridLayout()
         layout.addWidget(self.stack, 0, 0)
@@ -105,6 +106,11 @@ class main(QWidget):
         self.stack.setCurrentIndex(4)
         self.ava.botstop()
         
+    def mesge(self):
+        self.showNormal()
+        self.setGeometry(20, 20, 120, 95)
+        self.stack.setCurrentIndex(5)
+        
 class menu(QWidget):
     def __init__(self, main, parent=None):
         super().__init__(parent)
@@ -121,7 +127,8 @@ class menu(QWidget):
         acc = QPushButton("Einstellungen (bald)")
         ly.addWidget(acc)
 
-        msg = QPushButton("</> Nachrichten (bald)")
+        msg = QPushButton("</> Nachrichten")
+        msg.clicked.connect(main.mesge)
         ly.addWidget(msg)
         
         bel = QPushButton("tägliche Belohnung abholen")
@@ -133,6 +140,33 @@ class menu(QWidget):
         ly.addWidget(store)
         
         self.setLayout(ly)
+        
+class message(QWidget):
+    def __init__(self, main, parent=None):
+        super().__init__(parent)
+        ly = QVBoxLayout()
+        
+        lb = QLabel("Hier kannst du Nachrichten von den Entwicklern bekommen.")
+        ly.addWidget(lb)
+        pltz = QLabel()
+        ly.addWidget(pltz)
+        
+        self.msgs = QLabel()
+        ly.addWidget()
+        
+        relo = QPushButton("neu laden")
+        relo.clicked.connect(self.reload)
+        ly.addWidget(relo)
+        
+    def reload(self):
+        datei = open("user.cvd", "r")
+        uss = datei.read()
+        datei.close()
+        deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
+        users = deta.Base("user")
+        user = users.get(uss) # the user
+        mes = user["msg"]
+        self.msgs.setText(mes)
         
 class market(QWidget):
     def __init__(self, main, parent=None):
