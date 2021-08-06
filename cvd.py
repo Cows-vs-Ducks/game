@@ -505,6 +505,11 @@ class registrer(QWidget):
                               "msg": "",
                               "bann": "0",
                 })
+                allusers = deta.Base("alluser")
+                allusers.insert({"key": us,
+                              "level": "1",
+                               "moneten": "0"
+                })
             except:
                 msgBox = QMessageBox()
                 msgBox.setText("40: Du konntest nicht registriert werden.")
