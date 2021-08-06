@@ -3,6 +3,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtSvg import *
 from urllib.request import *
+from datetime import date
 import sys, os, time, random, json
 from deta import Deta    
         
@@ -39,6 +40,37 @@ class main(QWidget):
             msgBox.setText("44: Fehler")
             msgBox.setInformativeText("Ein Fehler ist aufgetreten. Eventuell bist du nicht angemeldet. Falls dieser Fehler weiterhin besteht, sende uns den Felercode per Mail an cows.vs.ducks@gmail.com.")
             msgBox.exec_()
+                
+   def belohnung(self):
+        datei = open("belohnung.cvd", "a")
+        gd = datei.read()
+        datei.close()
+        if gd != date.today() or not os.path.isfile("belohnung.cvd"):
+            belo = random.randint(10, 100)
+            datei = open("user.cvd", "r")
+            uss = datei.read()
+            datei.close()
+            deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
+            users = deta.Base("user")
+            user = users.get(uss) # the user
+            mon = user["moneten"]
+            moni = int(mon)
+            moni += belo
+            users.update({"moneten": moni}, uss)
+            try:
+                os.remove("belohnung.cvd")
+            except:
+                pass
+            datei = open("belohnung.cvd", "a")
+            datei.write(date.today())
+            datei.close()
+            msgBox = QMessageBox()
+            msgBox.setText("Du hast deine Tägliche Belohnung von " + str(belo) + "erhalten.")
+            msgBox.exec_()
+        else:
+            msgbox = QMessageBox()
+            msgbox.setText("Du hast dir heute schon deine Belohnung abgeholt. Versuche es morgen nochmal.")
+            msgbox.exec()
         
     def login(self):
         self.showNormal()
