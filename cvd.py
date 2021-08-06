@@ -393,7 +393,8 @@ class login(QWidget):
         user = users.get(ussee)
         try:
             password = user["passwort"]
-            if password == passwwd:
+            ban = user["bann"]
+            if password == passwwd and not ban == "a":
                 try:
                     os.remove("user.cvd")
                 except:
@@ -410,7 +411,7 @@ class login(QWidget):
             else:
                 msgBox = QMessageBox()
                 msgBox.setText("41: Du konntest nicht angemeldet werden.")
-                msgBox.setInformativeText("Dein Passwort ist falsch. Wenn das Problem weiterhin besteht oder wenn du dein Passwort vergessen hasst, sende uns den Fehlercode per Mail an cows.vs.ducks@gmail.com. Wir senden dir dann dein Passwort an die E-Mail-Adressse, die du bei der Registrierung angegeben hast.")
+                msgBox.setInformativeText("Dein Passwort ist falsch oder dein Konto wurde deaktiviert. Wenn das Problem weiterhin besteht oder wenn du dein Passwort vergessen hasst, sende uns den Fehlercode per Mail an cows.vs.ducks@gmail.com. Wir senden dir dann dein Passwort an die E-Mail-Adressse, die du bei der Registrierung angegeben hast.")
                 msgBox.exec_()
         except:
             msgBox = QMessageBox()
@@ -501,7 +502,8 @@ class registrer(QWidget):
                               "waffen": "1",
                               "tränke": "",
                               "status": "gamer",
-                              "msg": ""
+                              "msg": "",
+                              "bann": "",
                 })
             except:
                 msgBox = QMessageBox()
