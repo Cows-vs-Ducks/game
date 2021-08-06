@@ -394,7 +394,7 @@ class login(QWidget):
         try:
             password = user["passwort"]
             ban = user["bann"]
-            if password == passwwd and not ban == "a":
+            if password == passwwd and not ban == "1":
                 try:
                     os.remove("user.cvd")
                 except:
@@ -503,7 +503,7 @@ class registrer(QWidget):
                               "tränke": "",
                               "status": "gamer",
                               "msg": "",
-                              "bann": "",
+                              "bann": "0",
                 })
             except:
                 msgBox = QMessageBox()
