@@ -131,6 +131,9 @@ class menu(QWidget):
         msg.clicked.connect(main.mesge)
         ly.addWidget(msg)
         
+        self.new = QLabel()
+        ly.addWidget(self.new)
+        
         bel = QPushButton("tägliche Belohnung abholen")
         bel.clicked.connect(main.belohnung)
         ly.addWidget(bel)
@@ -140,6 +143,28 @@ class menu(QWidget):
         ly.addWidget(store)
         
         self.setLayout(ly)
+        
+    def checkmsg(self):
+        datei = open("user.cvd", "r")
+        uss = datei.read()
+        datei.close()
+        deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
+        users = deta.Base("user")
+        user = users.get(uss) # the user
+        mes = user["msg"]
+        try:
+            datei = open("lastmsg.cvd", "r")
+            lastmsg = datei.read()
+            datei.close()
+        except:
+            lastmsg = ""
+        if mes != "" or mes != lastmsg:
+            self.new.setText("Du hast eine neue </> Nachricht.")
+            msgbox = QMessageBox()
+            msgbox.setText("Du hast eine neue </> Nachricht. Drücke im Menü  auf </> Nachrichten, um sie anzuzeigen.")
+            msgbox.exec()
+        else:
+            self.new.setText("")
         
 class message(QWidget):
     def __init__(self, main, parent=None):
@@ -169,6 +194,9 @@ class message(QWidget):
         user = users.get(uss) # the user
         mes = user["msg"]
         self.msgs.setText(mes)
+        datei = open("lastmsg.cvd", "r")
+        datei.write(mes)
+        datei.close()
         
 class market(QWidget):
     def __init__(self, main, parent=None):
