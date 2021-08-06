@@ -14,12 +14,13 @@ class main(QWidget):
         self.ava = Svg(self)
         self.shop = market(self)
         self.inlog = login(self)
+        self.mmen = menu(self)
         self.inlog.gogo()
         self.stack = QStackedWidget()
         self.stack.addWidget(self.inlog)
         self.stack.addWidget(registrer(self))
         self.stack.addWidget(self.ava)
-        self.stack.addWidget(menu(self))
+        self.stack.addWidget(self.mmen)
         self.stack.addWidget(self.shop)
         self.stack.addWidget(message(self))
         
@@ -30,6 +31,7 @@ class main(QWidget):
         self.show()
         
     def logout(self):
+        self.mmen.stopmsg()
         try:
             os.remove("user.cvd")
             msgBox = QMessageBox()
@@ -74,6 +76,7 @@ class main(QWidget):
             msgbox.exec()
         
     def login(self):
+        self.stopmsg()
         self.showNormal()
         self.setGeometry(20, 20, 120, 95)
         self.stack.setCurrentIndex(0)
@@ -95,6 +98,7 @@ class main(QWidget):
         self.showNormal()
         self.setGeometry(20, 20, 120, 95)
         self.shop.stopstore()
+        self.mmen.gomsg()
         self.stack.setCurrentIndex(3)
         self.ava.botstop()
         self.inlog.sstop()
@@ -143,6 +147,14 @@ class menu(QWidget):
         ly.addWidget(store)
         
         self.setLayout(ly)
+        
+    def gomsg(self):
+        self.chec = QTimer()
+        self.chec.timeout.connect(self.checkmsg)
+        self.chec.start(5000)
+
+    def stopmsg(self):
+        self.chec.stop()
         
     def checkmsg(self):
         datei = open("user.cvd", "r")
