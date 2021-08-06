@@ -12,8 +12,10 @@ class main(QWidget):
         
         self.ava = Svg(self)
         self.shop = market(self)
+        self.inlog = login(self)
+        self.inlog.gogo()
         self.stack = QStackedWidget()
-        self.stack.addWidget(login(self))
+        self.stack.addWidget(self.inlog)
         self.stack.addWidget(registrer(self))
         self.stack.addWidget(self.ava)
         self.stack.addWidget(menu(self))
@@ -39,11 +41,14 @@ class main(QWidget):
             msgBox.exec_()
         
     def login(self):
+        self.showNormal()
         self.setGeometry(20, 20, 120, 95)
         self.stack.setCurrentIndex(0)
         self.ava.botstop()
+        self.inlog.gogo()
     
     def registrer(self):
+        self.showNormal()
         self.setGeometry(20, 20, 120, 95)
         self.stack.setCurrentIndex(1)
         self.ava.botstop()
@@ -54,12 +59,15 @@ class main(QWidget):
         self.stack.setCurrentIndex(2)
         
     def menug(self):
+        self.showNormal()
         self.setGeometry(20, 20, 120, 95)
         self.shop.stopstore()
         self.stack.setCurrentIndex(3)
         self.ava.botstop()
+        self.inlog.sstop()
         
     def store(self):
+        self.showNormal()
         self.setGeometry(20, 20, 120, 95)
         self.shop.gostore()
         self.stack.setCurrentIndex(4)
@@ -80,6 +88,9 @@ class menu(QWidget):
         
         acc = QPushButton("Einstellungen (bald)")
         ly.addWidget(acc)
+
+        msg = QPushButton("</> Nachrichten (bald)")
+        ly.addWidget(msg)
         
         store = QPushButton("Market")
         store.clicked.connect(main.store)
@@ -152,7 +163,7 @@ class market(QWidget):
         self.timeeeer.stop()
         
     def trank(self, item):
-        tr = item.text().replace("   preis: 10 m", "")
+        tr = item.text().replace("   preis: 200 m", "")
         if tr == "Herztrank(4 Herzen)":
             datei = open("user.cvd", "r")
             uss = datei.read()
@@ -164,9 +175,13 @@ class market(QWidget):
             moni = int(mon)
             moni -= 200
             if moni >= 0:
-                mon = user["tränke"]
-                moni = str(mon) + "1"
-                users.update({"tränke": moni}, uss)
+                tr = user["tränke"]
+                tri = str(tr) + "1"
+                users.update({"tränke": tri}, uss)
+                users.update({"moneten": moni}, uss)
+                msgbox = QMessageBox()
+                msgbox.setText("Du hast dir einen Herztrank gekauft! Jetzt hast du in im nächsten Spiel 4 Herzen.")
+                msgbox.exec()
             else:
                 msgbox = QMessageBox()
                 msgbox.setText("Du hast leider nicht genug Moneten.")
@@ -243,8 +258,20 @@ class login(QWidget):
         llly.addWidget(rg, 5, 2)
         
         self.setLayout(llly)
+
+    def gogo(self):
+        self.chekc = QTimer()
+        self.chekc.timeout.connect(self.check)
+        self.chekc.start(1000)
+
+    def sstop(self):
+        self.chekc.stop()
+
+    def check(self):
         if os.path.isfile("user.cvd"):
-            main.menug()
+            main.menug(self.main)
+        else:
+            pass
         
     def logii(self):
         passwwd = self.ps1.text()
@@ -361,7 +388,8 @@ class registrer(QWidget):
                               "level": "1",
                               "waffen": "1",
                               "tränke": "",
-                              "status": "gamer"
+                              "status": "gamer",
+                              "msg": ""
                 })
             except:
                 msgBox = QMessageBox()
@@ -386,36 +414,37 @@ class Hearth(QWidget):
     def __init__(self, main, parent=None):
         super().__init__(parent)
 
-        ly = QGridLayout()
+        self.ly = QGridLayout()
         self.main = main
 
         self.bothearth1 = QSvgWidget("heart.svg", self)
         self.bothearth1.setFixedSize(50, 50)
-        ly.addWidget(self.bothearth1, 0, 7)
+        self.ly.addWidget(self.bothearth1, 0, 7)
 
         self.bothearth2 = QSvgWidget("heart.svg", self)
         self.bothearth2.setFixedSize(50, 50)
-        ly.addWidget(self.bothearth2, 0, 8)
+        self.ly.addWidget(self.bothearth2, 0, 8)
 
         self.bothearth3 = QSvgWidget("heart.svg", self)
         self.bothearth3.setFixedSize(50, 50)
-        ly.addWidget(self.bothearth3, 0, 9)
+        self.ly.addWidget(self.bothearth3, 0, 9)
 
         platzhalter = QLabel()
-        ly.addWidget(platzhalter, 0, 4)
+        self.ly.addWidget(platzhalter, 0, 5)
 
         self.userhearth1 = QSvgWidget("heart.svg", self)
         self.userhearth1.setFixedSize(50, 50)
-        ly.addWidget(self.userhearth1, 0, 1)
+        self.ly.addWidget(self.userhearth1, 0, 1)
 
         self.userhearth2 = QSvgWidget("heart.svg", self)
         self.userhearth2.setFixedSize(50, 50)
-        ly.addWidget(self.userhearth2, 0, 2)
+        self.ly.addWidget(self.userhearth2, 0, 2)
         
         self.userhearth3 = QSvgWidget("heart.svg", self)
         self.userhearth3.setFixedSize(50, 50)
-        ly.addWidget(self.userhearth3, 0, 3)
+        self.ly.addWidget(self.userhearth3, 0, 3)
         
+    def gogogo(self):
         datei = open("user.cvd", "r")
         uss = datei.read()
         datei.close()
@@ -423,22 +452,22 @@ class Hearth(QWidget):
         users = deta.Base("user")
         user = users.get(uss) # the user
         tr = user["tränke"]
-        trs = list(str(mon))
+        trs = list(str(tr))
         if "1" in trs:
             trs.remove("1")
             upd = "".join(trs)
-            users.update({"tränke": upd}, uss)
+            users.update({"tränke": str(upd)}, uss)
             self.herzen = 4
             self.userhearth4 = QSvgWidget("heart.svg", self)
             self.userhearth4.setFixedSize(50, 50)
-            ly.addWidget(self.userhearth4, 0, 4)
+            self.ly.addWidget(self.userhearth4, 0, 4)
         else:
             self.herzen = 3
 
-        self.herrbot = 3
-        self.herruser = self.herzen
+        self.herruser = 3
+        self.herrbot = self.herzen
 
-        self.setLayout(ly)
+        self.setLayout(self.ly)
         self.show()
         
     def reseth(self):
@@ -474,7 +503,7 @@ class Hearth(QWidget):
     def lesshearthuser(self):
         if self.herrbot == 4:
             self.userhearth4.move(1000000, 1000000)
-            self.herrbot == 3
+            self.herrbot = 3
         elif self.herrbot == 3:
             self.userhearth3.move(1000000, 1000000)
             self.herrbot = 2
@@ -556,6 +585,7 @@ class Svg(QWidget):
         self.botshoot = QTimer()
         self.botshoot.timeout.connect(self.shootbot)
         self.botshoot.start(4000)
+        self.hearthh.gogogo()
         
     def botstop(self):
         try:
@@ -686,24 +716,32 @@ class Svg(QWidget):
         self.actutume = time.time()
         
     def right(self):
-        self.cowx += self.stepw
+        self.cowxt = self.cowx + self.stepw
         self.cowy = self.cowy
-        self.pic.move(self.cowx, self.cowy)
+        if self.cowxt <= int(self.width) - 100:
+            self.cowx = self.cowxt
+            self.pic.move(self.cowx, self.cowy)
     
     def down(self):
-        self.cowy += self.steph
+        self.cowyt = self.cowy + self.steph
         self.cowx = self.cowx
-        self.pic.move(self.cowx, self.cowy)
+        if self.cowyt <= int(self.height) - 200:
+            self.cowy = self.cowyt
+            self.pic.move(self.cowx, self.cowy)
     
     def left(self):
-        self.cowx -= self.stepw
+        self.cowxt = self.cowx - self.stepw
         self.cowy = self.cowy
-        self.pic.move(self.cowx, self.cowy)
+        if self.cowxt >= 0:
+            self.cowx = self.cowxt
+            self.pic.move(self.cowx, self.cowy)
     
     def up(self):
-        self.cowy -= self.steph
+        self.cowyt = self.cowy - self.steph
         self.cowx = self.cowx
-        self.pic.move(self.cowx, self.cowy)
+        if self.cowyt >= 0:
+            self.cowy = self.cowyt
+            self.pic.move(self.cowx, self.cowy)
 
 app = QApplication([])
 try:
