@@ -124,6 +124,10 @@ class menu(QWidget):
         msg = QPushButton("</> Nachrichten (bald)")
         ly.addWidget(msg)
         
+        bel = QPushButton("tägliche Belohnung abholen")
+        bel.clicked.connect(main.belohnung)
+        ly.addWidget(bel)
+        
         store = QPushButton("Market")
         store.clicked.connect(main.store)
         ly.addWidget(store)
