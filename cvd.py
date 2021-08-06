@@ -158,6 +158,8 @@ class message(QWidget):
         relo.clicked.connect(self.reload)
         ly.addWidget(relo)
         
+        self.reload()
+        
     def reload(self):
         datei = open("user.cvd", "r")
         uss = datei.read()
