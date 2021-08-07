@@ -143,6 +143,9 @@ class menu(QWidget):
         bel.clicked.connect(main.belohnung)
         ly.addWidget(bel)
         
+        cas = QPushButton("Casino")
+        ly.addWidget(cas)
+        
         store = QPushButton("Market")
         store.clicked.connect(main.store)
         ly.addWidget(store)
