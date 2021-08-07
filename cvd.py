@@ -208,11 +208,12 @@ class casino(QWidget):
         ba.clicked.connect(main.menug)
         ly.addWidget(ba)
         
-        lb = QLabel("Das ist das Casino. Du kannst hier einen Betrag eingeben, den du einsetzen willst. Das wird eine zufällige Zahl zwischen 0 und 10 generiert. Wenn es eine 10 ist, bekommst du das Doppelte zurück, und wenn es eine 0 ist, bekommst du nichts zurück. Zwischen drinnen bekommst du immer mehr.")
+        lb = QLabel("Das ist das Casino. Du kannst hier einen Betrag eingeben, den du einsetzen willst.\nDas wird eine zufällige Zahl zwischen 0 und 10 generiert. Wenn es eine 10 ist,\nbekommst du das Doppelte zurück, und wenn es eine 0 ist, bekommst du nichts zurück.\nZwischen drinnen bekommst du immer mehr.")
         ly.addWidget(lb)
         
         self.betr = QSpinBox()
-        ly.addWidget(sels.betr)
+        self.betr.setMaximum(1000000)
+        ly.addWidget(self.betr)
         
         bt = QPushButton("los!!!")
         bt.clicked.connect(self.go)
@@ -236,7 +237,7 @@ class casino(QWidget):
             users.update({"moneten": moni}, uss)
             num = num / 10 * 2 * zuf
             msgbox = QMessageBox()
-            msgbox.setText("Du hast " + num + " Moneten bekommen.")
+            msgbox.setText("Du hast " + str(num) + " Moneten bekommen.")
             msgbox.exec()
             deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
             users = deta.Base("user")
