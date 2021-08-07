@@ -192,6 +192,52 @@ class menu(QWidget):
         else:
             self.new.setText("")
         
+class casino(QWidget):
+    def __init__(self, main, parent=None):
+        super().__init__(parent)
+        ly = QVBoxLayout()
+        
+        ba = QPushButton("Zurück")
+        ba.clicked.connect(main.menug)
+        ly.addWidget(ba)
+        
+        lb = QLabel("Das ist das Casino. Du kannst hier einen Betrag eingeben, den du einsetzen willst. Das wird eine zufällige Zahl zwischen 0 und 10 generiert. Wenn es eine 10 ist, bekommst du das Doppelte zurück, und wenn es eine 0 ist, bekommst du nichts zurück. Zwischen drinnen bekommst du immer mehr.")
+        ly.addWidget(lb)
+        
+        self.betr = QSpinBox()
+        ly.addWidget(sels.betr)
+        
+        bt = QPushButton("los!!!")
+        bt.clicked.connect(self.go)
+        ly.addWidget(bt)
+        
+        self.setLayout(ly)
+        
+    def go(self):
+        num = self.betr.value()
+        zuf = random.randint(0, 10)
+        datei = open("user.cvd", "r")
+        uss = datei.read()
+        datei.close()
+        deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
+        users = deta.Base("user")
+        user = users.get(uss) # the user
+        mon = user["moneten"]
+        moni = int(mon)
+        moni -= num
+        users.update({"moneten": moni}, uss)
+        num = num / 10 * 2 * zuf
+        msgbox = QMessageBox()
+        msgbox.setText("Du hast " + num + " Moneten bekommen.")
+        msgbox.exec()
+        deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
+        users = deta.Base("user")
+        user = users.get(uss) # the user
+        mon = user["moneten"]
+        moni = int(mon)
+        moni += num
+        users.update({"moneten": moni}, uss)
+        
 class message(QWidget):
     def __init__(self, main, parent=None):
         super().__init__(parent)
