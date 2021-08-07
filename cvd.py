@@ -23,6 +23,7 @@ class main(QWidget):
         self.stack.addWidget(self.mmen)
         self.stack.addWidget(self.shop)
         self.stack.addWidget(message(self))
+        self.stack.addWidget(casino(self))
         
         layout = QGridLayout()
         layout.addWidget(self.stack, 0, 0)
@@ -119,6 +120,11 @@ class main(QWidget):
         self.setGeometry(20, 20, 120, 95)
         self.stack.setCurrentIndex(5)
         
+    def cassino(self):
+        self.showNormal()
+        self.setGeometry(20, 20, 120, 95)
+        self.stack.setCurrentIndex(6)
+        
 class menu(QWidget):
     def __init__(self, main, parent=None):
         super().__init__(parent)
@@ -144,6 +150,7 @@ class menu(QWidget):
         ly.addWidget(bel)
         
         cas = QPushButton("Casino")
+        cas.clicked.connect(main.cassino)
         ly.addWidget(cas)
         
         store = QPushButton("Market")
@@ -214,7 +221,7 @@ class casino(QWidget):
         self.setLayout(ly)
         
     def go(self):
-        num = self.betr.value()
+        num = int(self.betr.value())
         zuf = random.randint(0, 10)
         datei = open("user.cvd", "r")
         uss = datei.read()
