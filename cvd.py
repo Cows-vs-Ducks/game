@@ -225,18 +225,23 @@ class casino(QWidget):
         mon = user["moneten"]
         moni = int(mon)
         moni -= num
-        users.update({"moneten": moni}, uss)
-        num = num / 10 * 2 * zuf
-        msgbox = QMessageBox()
-        msgbox.setText("Du hast " + num + " Moneten bekommen.")
-        msgbox.exec()
-        deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
-        users = deta.Base("user")
-        user = users.get(uss) # the user
-        mon = user["moneten"]
-        moni = int(mon)
-        moni += num
-        users.update({"moneten": moni}, uss)
+        if moni >= 0:
+            users.update({"moneten": moni}, uss)
+            num = num / 10 * 2 * zuf
+            msgbox = QMessageBox()
+            msgbox.setText("Du hast " + num + " Moneten bekommen.")
+            msgbox.exec()
+            deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
+            users = deta.Base("user")
+            user = users.get(uss) # the user
+            mon = user["moneten"]
+            moni = int(mon)
+            moni += num
+            users.update({"moneten": moni}, uss)
+        else:
+            msgbox = QMessageBox()
+            msgbox.setText("Du hast leider nicht genug Moneten.")
+            msgbox.exec()
         
 class message(QWidget):
     def __init__(self, main, parent=None):
@@ -359,7 +364,7 @@ class market(QWidget):
                 users.update({"tränke": tri}, uss)
                 users.update({"moneten": moni}, uss)
                 msgbox = QMessageBox()
-                msgbox.setText("Du hast dir einen Herztrank gekauft! Jetzt hast du in im nächsten Spiel 4 Herzen.")
+                msgbox.setText("Du hast dir einen Herztrank gekauft! Jetzt hast du im nächsten Spiel 4 Herzen.")
                 msgbox.exec()
             else:
                 msgbox = QMessageBox()
