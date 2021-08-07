@@ -43,12 +43,15 @@ class main(QWidget):
             msgBox.setText("44: Fehler")
             msgBox.setInformativeText("Ein Fehler ist aufgetreten. Eventuell bist du nicht angemeldet. Falls dieser Fehler weiterhin besteht, sende uns den Felercode per Mail an cows.vs.ducks@gmail.com.")
             msgBox.exec_()
-                
-   def belohnung(self):
-        datei = open("belohnung.cvd", "a")
-        gd = datei.read()
-        datei.close()
-        if gd != date.today() or not os.path.isfile("belohnung.cvd"):
+
+    def belohnung(self):
+        try:
+            datei = open("belohnung.cvd", "r")
+            gd = datei.read()
+            datei.close()
+        except:
+            gd = date.today()
+        if str(gd) != str(date.today()) or not os.path.isfile("belohnung.cvd"):
             belo = random.randint(10, 100)
             datei = open("user.cvd", "r")
             uss = datei.read()
@@ -65,10 +68,10 @@ class main(QWidget):
             except:
                 pass
             datei = open("belohnung.cvd", "a")
-            datei.write(date.today())
+            datei.write(str(date.today()))
             datei.close()
             msgBox = QMessageBox()
-            msgBox.setText("Du hast deine Tägliche Belohnung von " + str(belo) + "erhalten.")
+            msgBox.setText("Du hast deine Tägliche Belohnung von " + str(belo) + " Moneten erhalten.")
             msgBox.exec_()
         else:
             msgbox = QMessageBox()
@@ -76,7 +79,7 @@ class main(QWidget):
             msgbox.exec()
         
     def login(self):
-        self.stopmsg()
+        self.mmen.stopmsg()
         self.showNormal()
         self.setGeometry(20, 20, 120, 95)
         self.stack.setCurrentIndex(0)
@@ -91,6 +94,7 @@ class main(QWidget):
         
     def game(self):
         self.showFullScreen()
+        self.mmen.stopmsg()
         self.ava.go()
         self.stack.setCurrentIndex(2)
         
@@ -135,9 +139,6 @@ class menu(QWidget):
         msg.clicked.connect(main.mesge)
         ly.addWidget(msg)
         
-        self.new = QLabel()
-        ly.addWidget(self.new)
-        
         bel = QPushButton("tägliche Belohnung abholen")
         bel.clicked.connect(main.belohnung)
         ly.addWidget(bel)
@@ -145,6 +146,9 @@ class menu(QWidget):
         store = QPushButton("Market")
         store.clicked.connect(main.store)
         ly.addWidget(store)
+
+        self.new = QLabel()
+        ly.addWidget(self.new)
         
         self.setLayout(ly)
         
@@ -170,11 +174,18 @@ class menu(QWidget):
             datei.close()
         except:
             lastmsg = ""
-        if mes != "" or mes != lastmsg:
+        if mes != "" and mes != lastmsg:
             self.new.setText("Du hast eine neue </> Nachricht.")
             msgbox = QMessageBox()
             msgbox.setText("Du hast eine neue </> Nachricht. Drücke im Menü  auf </> Nachrichten, um sie anzuzeigen.")
             msgbox.exec()
+            try:
+                os.remove("lastmsg.cvd")
+            except:
+                pass
+            datei = open("lastmsg.cvd", "a")
+            lastmsg = datei.write(mes)
+            datei.close()
         else:
             self.new.setText("")
         
@@ -183,19 +194,22 @@ class message(QWidget):
         super().__init__(parent)
         ly = QVBoxLayout()
         
-        lb = QLabel("Hier kannst du Nachrichten von den Entwicklern bekommen.")
+        ba = QPushButton("Zurück")
+        ba.clicked.connect(main.menug)
+        ly.addWidget(ba)
+        lb = QLabel("Hier kannst du Nachrichten von uns bekommen.")
         ly.addWidget(lb)
         pltz = QLabel()
         ly.addWidget(pltz)
         
         self.msgs = QLabel()
-        ly.addWidget()
+        ly.addWidget(self.msgs)
         
         relo = QPushButton("neu laden")
         relo.clicked.connect(self.reload)
         ly.addWidget(relo)
-        
-        self.reload()
+
+        self.setLayout(ly)
         
     def reload(self):
         datei = open("user.cvd", "r")
@@ -206,7 +220,11 @@ class message(QWidget):
         user = users.get(uss) # the user
         mes = user["msg"]
         self.msgs.setText(mes)
-        datei = open("lastmsg.cvd", "r")
+        try:
+            os.remove("lastmsg")
+        except:
+            pass
+        datei = open("lastmsg.cvd", "a")
         datei.write(mes)
         datei.close()
         
@@ -424,6 +442,7 @@ class registrer(QWidget):
         super().__init__(parent)
         
         ly = QGridLayout()
+        self.main = main
         
         lvn = QLabel("Vorname")
         self.vn = QLineEdit()
@@ -505,11 +524,13 @@ class registrer(QWidget):
                               "msg": "",
                               "bann": "0",
                 })
+                """
                 allusers = deta.Base("alluser")
                 allusers.insert({"key": us,
                               "level": "1",
                                "moneten": "0"
                 })
+                """
             except:
                 msgBox = QMessageBox()
                 msgBox.setText("40: Du konntest nicht registriert werden.")
@@ -520,7 +541,7 @@ class registrer(QWidget):
             msgBoxr.setText("Du wurdest erfolgreich registriert.")
             msgBoxr.exec_()
             
-            sys.exit()
+            main.login(self.main)
             
         else:
             msgBox = QMessageBox()
@@ -807,11 +828,11 @@ class Svg(QWidget):
         if user == "user":
             if self.actutime - time.time() >= 3 or self.actutime == 4:
                 if self.waffe == "1":
-                    self.shootanim = QPropertyAnimation(self.ball, b"pos")
-                    self.shootanim.setDuration(1000)
-                    self.shootanim.setStartValue(QPoint(self.cowx, self.cowy))
-                    self.shootanim.setEndValue(QPointF(self.shootx, self.shooty))
-                    self.shootanim.start()
+                    self.shootanim1 = QPropertyAnimation(self.ball, b"pos")
+                    self.shootanim1.setDuration(1000)
+                    self.shootanim1.setStartValue(QPoint(self.cowx, self.cowy))
+                    self.shootanim1.setEndValue(QPointF(self.shootx, self.shooty))
+                    self.shootanim1.start()
                     self.timer = QTimer()
                     self.timer.timeout.connect(self.checkuser)
                     self.timer.setSingleShot(True)
@@ -823,16 +844,15 @@ class Svg(QWidget):
     def shootbot(self):
         self.shootx = self.cowx + 25
         self.shooty = self.cowy + 25
-        self.shootanim = QPropertyAnimation(self.botball, b"pos")
-        self.shootanim.setDuration(1000)
-        self.shootanim.setStartValue(QPoint(self.duckx, self.ducky))
-        self.shootanim.setEndValue(QPointF(self.shootx, self.shooty))
-        self.shootanim.start()
+        self.shootanim2 = QPropertyAnimation(self.botball, b"pos")
+        self.shootanim2.setDuration(1000)
+        self.shootanim2.setStartValue(QPoint(self.duckx, self.ducky))
+        self.shootanim2.setEndValue(QPointF(self.shootx, self.shooty))
+        self.shootanim2.start()
         self.timer = QTimer()
         self.timer.timeout.connect(self.checkbot)
         self.timer.setSingleShot(True)
-        self.timer.start(1000) 
-        self.actutume = time.time()
+        self.timer.start(1000)
         
     def right(self):
         self.cowxt = self.cowx + self.stepw
