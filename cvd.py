@@ -23,6 +23,7 @@ class main(QWidget):
         self.stack.addWidget(self.mmen)
         self.stack.addWidget(self.shop)
         self.stack.addWidget(message(self))
+        self.stack.addWidget(casino(self))
         
         layout = QGridLayout()
         layout.addWidget(self.stack, 0, 0)
@@ -119,6 +120,11 @@ class main(QWidget):
         self.setGeometry(20, 20, 120, 95)
         self.stack.setCurrentIndex(5)
         
+    def cassino(self):
+        self.showNormal()
+        self.setGeometry(20, 20, 120, 95)
+        self.stack.setCurrentIndex(6)
+        
 class menu(QWidget):
     def __init__(self, main, parent=None):
         super().__init__(parent)
@@ -142,6 +148,10 @@ class menu(QWidget):
         bel = QPushButton("tägliche Belohnung abholen")
         bel.clicked.connect(main.belohnung)
         ly.addWidget(bel)
+        
+        cas = QPushButton("Casino")
+        cas.clicked.connect(main.cassino)
+        ly.addWidget(cas)
         
         store = QPushButton("Market")
         store.clicked.connect(main.store)
@@ -188,6 +198,58 @@ class menu(QWidget):
             datei.close()
         else:
             self.new.setText("")
+        
+class casino(QWidget):
+    def __init__(self, main, parent=None):
+        super().__init__(parent)
+        ly = QVBoxLayout()
+        
+        ba = QPushButton("Zurück")
+        ba.clicked.connect(main.menug)
+        ly.addWidget(ba)
+        
+        lb = QLabel("Das ist das Casino. Du kannst hier einen Betrag eingeben, den du einsetzen willst.\nDas wird eine zufällige Zahl zwischen 0 und 10 generiert. Wenn es eine 10 ist,\nbekommst du das Doppelte zurück, und wenn es eine 0 ist, bekommst du nichts zurück.\nZwischen drinnen bekommst du immer mehr.")
+        ly.addWidget(lb)
+        
+        self.betr = QSpinBox()
+        self.betr.setMaximum(1000000)
+        ly.addWidget(self.betr)
+        
+        bt = QPushButton("los!!!")
+        bt.clicked.connect(self.go)
+        ly.addWidget(bt)
+        
+        self.setLayout(ly)
+        
+    def go(self):
+        num = int(self.betr.value())
+        zuf = random.randint(0, 10)
+        datei = open("user.cvd", "r")
+        uss = datei.read()
+        datei.close()
+        deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
+        users = deta.Base("user")
+        user = users.get(uss) # the user
+        mon = user["moneten"]
+        moni = int(mon)
+        moni -= num
+        if moni >= 0:
+            users.update({"moneten": moni}, uss)
+            num = num / 10 * 2 * zuf
+            msgbox = QMessageBox()
+            msgbox.setText("Du hast " + str(num) + " Moneten bekommen.")
+            msgbox.exec()
+            deta = Deta("a0nx7pgk_CAsXSD5UjJsWT8xj9nPSAb14xduJ1fUR")
+            users = deta.Base("user")
+            user = users.get(uss) # the user
+            mon = user["moneten"]
+            moni = int(mon)
+            moni += num
+            users.update({"moneten": moni}, uss)
+        else:
+            msgbox = QMessageBox()
+            msgbox.setText("Du hast leider nicht genug Moneten.")
+            msgbox.exec()
         
 class message(QWidget):
     def __init__(self, main, parent=None):
@@ -310,7 +372,7 @@ class market(QWidget):
                 users.update({"tränke": tri}, uss)
                 users.update({"moneten": moni}, uss)
                 msgbox = QMessageBox()
-                msgbox.setText("Du hast dir einen Herztrank gekauft! Jetzt hast du in im nächsten Spiel 4 Herzen.")
+                msgbox.setText("Du hast dir einen Herztrank gekauft! Jetzt hast du im nächsten Spiel 4 Herzen.")
                 msgbox.exec()
             else:
                 msgbox = QMessageBox()
