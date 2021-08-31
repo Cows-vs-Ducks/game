@@ -620,30 +620,30 @@ class Hearth(QWidget):
         self.main = main
 
         self.bothearth1 = QSvgWidget("heart.svg", self)
-        self.bothearth1.setFixedSize(50, 50)
+        self.bothearth1.setFixedSize(10, 10)
         self.ly.addWidget(self.bothearth1, 0, 7)
 
         self.bothearth2 = QSvgWidget("heart.svg", self)
-        self.bothearth2.setFixedSize(50, 50)
+        self.bothearth2.setFixedSize(10, 10)
         self.ly.addWidget(self.bothearth2, 0, 8)
 
         self.bothearth3 = QSvgWidget("heart.svg", self)
-        self.bothearth3.setFixedSize(50, 50)
+        self.bothearth3.setFixedSize(10, 10)
         self.ly.addWidget(self.bothearth3, 0, 9)
 
         platzhalter = QLabel()
         self.ly.addWidget(platzhalter, 0, 5)
 
         self.userhearth1 = QSvgWidget("heart.svg", self)
-        self.userhearth1.setFixedSize(50, 50)
+        self.userhearth1.setFixedSize(10, 10)
         self.ly.addWidget(self.userhearth1, 0, 1)
 
         self.userhearth2 = QSvgWidget("heart.svg", self)
-        self.userhearth2.setFixedSize(50, 50)
+        self.userhearth2.setFixedSize(10, 10)
         self.ly.addWidget(self.userhearth2, 0, 2)
         
         self.userhearth3 = QSvgWidget("heart.svg", self)
-        self.userhearth3.setFixedSize(50, 50)
+        self.userhearth3.setFixedSize(10, 10)
         self.ly.addWidget(self.userhearth3, 0, 3)
         
     def gogogo(self):
@@ -735,7 +735,10 @@ class AvA(QWidget):
         self.main = main
         ly = QHBoxLayout()
         self.hearthh = Hearth(self.main)
+        self.pltz = QLabel()
         ly.addWidget(self.hearthh)
+        ly.addWidget(self.pltz)
+        ly.addWidget(self.pltz)
 
         fileh1 = open("height.cvd", "r")
         self.height = fileh1.read()
@@ -850,7 +853,7 @@ class AvA(QWidget):
             self.botzu = random.randint(0, 10)
             self.boti = 0
         else:
-            if self.shootx <= self.duckx + 175 and self.shooty <= self.ducky + 200 and self.shootx >= self.duckx and self.shooty >= self.ducky:
+            if self.shootx <= self.duckx + 175 / 2 and self.shooty <= self.ducky + 100 and self.shootx >= self.duckx and self.shooty >= self.ducky:
                 for x in range(0, 4):
                     self.botup()
             
@@ -878,7 +881,7 @@ class AvA(QWidget):
         self.pic2.move(self.duckx, self.ducky)
         
     def checkuser(self):
-        if self.shootx <= self.duckx + 175 and self.shooty <= self.ducky + 200 and self.shootx >= self.duckx and self.shooty >= self.ducky:
+        if self.shootx <= self.duckx + 175 / 2 and self.shooty <= self.ducky + 100 and self.shootx >= self.duckx and self.shooty >= self.ducky:
             print("getroffen")
             #self.ball.move(1000000, 1000000)
             self.hearthh.lesshearthbot()
@@ -888,7 +891,7 @@ class AvA(QWidget):
             return False
 
     def checkbot(self):
-        if self.shootx <= self.cowx + 175 and self.shooty <= self.cowy + 200 and self.shootx >= self.cowx and self.shooty >= self.cowy:
+        if self.shootx <= self.cowx + 175 / 2 and self.shooty <= self.cowy + 100 and self.shootx >= self.cowx and self.shooty >= self.cowy:
             print("getroffen")
             self.ball.move(1000000, 1000000)
             self.hearthh.lesshearthuser()
