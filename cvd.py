@@ -11,7 +11,7 @@ class main(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         
-        self.ava = Svg(self)
+        self.ava = AvA(self)
         self.shop = market(self)
         self.inlog = login(self)
         self.mmen = menu(self)
@@ -620,30 +620,30 @@ class Hearth(QWidget):
         self.main = main
 
         self.bothearth1 = QSvgWidget("heart.svg", self)
-        self.bothearth1.setFixedSize(50, 50)
+        self.bothearth1.setFixedSize(10, 10)
         self.ly.addWidget(self.bothearth1, 0, 7)
 
         self.bothearth2 = QSvgWidget("heart.svg", self)
-        self.bothearth2.setFixedSize(50, 50)
+        self.bothearth2.setFixedSize(10, 10)
         self.ly.addWidget(self.bothearth2, 0, 8)
 
         self.bothearth3 = QSvgWidget("heart.svg", self)
-        self.bothearth3.setFixedSize(50, 50)
+        self.bothearth3.setFixedSize(10, 10)
         self.ly.addWidget(self.bothearth3, 0, 9)
 
         platzhalter = QLabel()
         self.ly.addWidget(platzhalter, 0, 5)
 
         self.userhearth1 = QSvgWidget("heart.svg", self)
-        self.userhearth1.setFixedSize(50, 50)
+        self.userhearth1.setFixedSize(10, 10)
         self.ly.addWidget(self.userhearth1, 0, 1)
 
         self.userhearth2 = QSvgWidget("heart.svg", self)
-        self.userhearth2.setFixedSize(50, 50)
+        self.userhearth2.setFixedSize(10, 10)
         self.ly.addWidget(self.userhearth2, 0, 2)
         
         self.userhearth3 = QSvgWidget("heart.svg", self)
-        self.userhearth3.setFixedSize(50, 50)
+        self.userhearth3.setFixedSize(10, 10)
         self.ly.addWidget(self.userhearth3, 0, 3)
         
     def gogogo(self):
@@ -685,8 +685,16 @@ class Hearth(QWidget):
             self.herruser = 1
         elif self.herruser == 1:
             self.bothearth1.move(1000000, 1000000)
+            moe = random.randint(1, 3)
             msgbox = QMessageBox()
-            msgbox.setText("Du hast Gewonnen!!!")
+            if moe == 1:
+                msgbox.setText("Du hast Gewonnen!!! Dafür bekommst du 100 Moneten.")
+            elif moe == 2:
+                msgbox.setText("Herzlichen Glückwunsch, du hast gewonnen und bekommst 100 Moneten")
+            elif moe == 3:
+                msgbox.setText("Du hast gewonnen. Als Belohnung bekommst du 100 Moneten.")
+            else:
+                msgbox.setText("Ein Fehler ist aufgetreten. Aber du hast Gewonnen!")
             msgbox.setWindowTitle("Gewonnen")
             msgbox.exec()
             datei = open("user.cvd", "r")
@@ -720,14 +728,17 @@ class Hearth(QWidget):
             msgbox.exec()
             main.menug(self.main)
 
-class Svg(QWidget):
+class AvA(QWidget):
     def __init__(self, main, parent=None):
         super().__init__(parent)
 
         self.main = main
         ly = QHBoxLayout()
         self.hearthh = Hearth(self.main)
+        self.pltz = QLabel()
         ly.addWidget(self.hearthh)
+        ly.addWidget(self.pltz)
+        ly.addWidget(self.pltz)
 
         fileh1 = open("height.cvd", "r")
         self.height = fileh1.read()
@@ -741,12 +752,12 @@ class Svg(QWidget):
         
         self.ball = QWidget(self)
         self.ball.setStyleSheet("background-color:black;border-radius:25px")
-        self.ball.resize(50, 50)
+        self.ball.resize(25, 25)
         self.ball.move(1000000, 1000000)
 
         self.botball = QWidget(self)
         self.botball.setStyleSheet("background-color:black;border-radius:25px")
-        self.botball.resize(50, 50)
+        self.botball.resize(25, 25)
         self.botball.move(1000000, 1000000)
         
         self.botzu = random.randint(0, 10)
@@ -768,11 +779,11 @@ class Svg(QWidget):
         self.waffe = "1"
         
         self.pic = QSvgWidget("cow.svg", self) # Cow
-        self.pic.setFixedSize(175, 200)
+        self.pic.setFixedSize(175 / 2, 100)
         self.pic.move(self.cowx, self.cowy)
         
         self.pic2 = QSvgWidget("cow.svg", self) # Duck
-        self.pic2.setFixedSize(175, 200)
+        self.pic2.setFixedSize(175 / 2, 100)
         self.pic.move(self.duckx, self.ducky)
         
         self.timeeer = QTimer()
@@ -829,7 +840,7 @@ class Svg(QWidget):
     def mousePressEvent(self, event):
         self.shootx = event.x()
         self.shooty = event.y()
-        self.timer = QTimer()
+        #self.timer = QTimer()
         #self.timer.timeout.connect(self.botaus)
         #self.timer.setSingleShot(True)
         #self.timer.start(1000)
@@ -842,7 +853,7 @@ class Svg(QWidget):
             self.botzu = random.randint(0, 10)
             self.boti = 0
         else:
-            if self.shootx <= self.duckx + 175 and self.shooty <= self.ducky + 200 and self.shootx >= self.duckx and self.shooty >= self.ducky:
+            if self.shootx <= self.duckx + 175 / 2 and self.shooty <= self.ducky + 100 and self.shootx >= self.duckx and self.shooty >= self.ducky:
                 for x in range(0, 4):
                     self.botup()
             
@@ -870,15 +881,17 @@ class Svg(QWidget):
         self.pic2.move(self.duckx, self.ducky)
         
     def checkuser(self):
-        if self.shootx <= self.duckx + 175 and self.shooty <= self.ducky + 200 and self.shootx >= self.duckx and self.shooty >= self.ducky:
+        if self.shootx <= self.duckx + 175 / 2 and self.shooty <= self.ducky + 100 and self.shootx >= self.duckx and self.shooty >= self.ducky:
             print("getroffen")
-            self.ball.move(1000000, 1000000)
+            #self.ball.move(1000000, 1000000)
             self.hearthh.lesshearthbot()
+            return True
         else:
-            self.ball.move(1000000, 1000000)
+            #self.ball.move(1000000, 1000000)
+            return False
 
     def checkbot(self):
-        if self.shootx <= self.cowx + 175 and self.shooty <= self.cowy + 200 and self.shootx >= self.cowx and self.shooty >= self.cowy:
+        if self.shootx <= self.cowx + 175 / 2 and self.shooty <= self.cowy + 100 and self.shootx >= self.cowx and self.shooty >= self.cowy:
             print("getroffen")
             self.ball.move(1000000, 1000000)
             self.hearthh.lesshearthuser()
@@ -887,19 +900,23 @@ class Svg(QWidget):
 
     def shootuser(self):
         user = "user"
+        treffer = False
+        i = 0
+        self.shootsx = 4
+        self.shootsy = self.shtooy / self.shtoox * 4
         if user == "user":
             if self.actutime - time.time() >= 3 or self.actutime == 4:
                 if self.waffe == "1":
-                    self.shootanim1 = QPropertyAnimation(self.ball, b"pos")
-                    self.shootanim1.setDuration(1000)
-                    self.shootanim1.setStartValue(QPoint(self.cowx, self.cowy))
-                    self.shootanim1.setEndValue(QPointF(self.shootx, self.shooty))
-                    self.shootanim1.start()
-                    self.timer = QTimer()
-                    self.timer.timeout.connect(self.checkuser)
-                    self.timer.setSingleShot(True)
-                    self.timer.start(1000) 
-                    self.actutume = time.time()
+                    while not i >= 200 and not treffer:
+                        self.shootx = self.cowx + self.shootsx
+                        self.shooty = self.cowy + self.shootsy
+                        self.shootanim1 = QPropertyAnimation(self.ball, b"pos")
+                        self.shootanim1.setDuration(5)
+                        self.shootanim1.setStartValue(QPoint(self.cowx, self.cowy))
+                        self.shootanim1.setEndValue(QPointF(self.shootx, self.shooty))
+                        self.shootanim1.start()
+                        treffer = self.checkuser()
+                        i += 1
             else:
                 pass
 
