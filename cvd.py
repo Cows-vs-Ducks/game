@@ -776,11 +776,11 @@ class AvA(QWidget):
         self.waffe = "1"
         
         self.pic = QSvgWidget("cow.svg", self) # Cow
-        self.pic.setFixedSize(175, 200)
+        self.pic.setFixedSize(175 / 2, 100)
         self.pic.move(self.cowx, self.cowy)
         
         self.pic2 = QSvgWidget("cow.svg", self) # Duck
-        self.pic2.setFixedSize(175, 200)
+        self.pic2.setFixedSize(175 / 2, 100)
         self.pic.move(self.duckx, self.ducky)
         
         self.timeeer = QTimer()
