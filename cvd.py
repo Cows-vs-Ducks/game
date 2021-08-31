@@ -749,12 +749,12 @@ class AvA(QWidget):
         
         self.ball = QWidget(self)
         self.ball.setStyleSheet("background-color:black;border-radius:25px")
-        self.ball.resize(50, 50)
+        self.ball.resize(25, 25)
         self.ball.move(1000000, 1000000)
 
         self.botball = QWidget(self)
         self.botball.setStyleSheet("background-color:black;border-radius:25px")
-        self.botball.resize(50, 50)
+        self.botball.resize(25, 25)
         self.botball.move(1000000, 1000000)
         
         self.botzu = random.randint(0, 10)
