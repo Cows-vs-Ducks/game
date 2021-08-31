@@ -826,8 +826,8 @@ class AvA(QWidget):
     def keyPressEvent(self, event):
         if str(event.key()) == self.keyRight:
             self.right()
-        elif str(event.key()) == self.keyDown:
-            self.down()
+        #elif str(event.key()) == self.keyDown:
+        #    self.down()
         elif str(event.key()) == self.keyLeft:
             self.left()
         elif str(event.key()) == self.keyUp:
