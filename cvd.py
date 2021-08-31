@@ -829,7 +829,7 @@ class Svg(QWidget):
     def mousePressEvent(self, event):
         self.shootx = event.x()
         self.shooty = event.y()
-        self.timer = QTimer()
+        #self.timer = QTimer()
         #self.timer.timeout.connect(self.botaus)
         #self.timer.setSingleShot(True)
         #self.timer.start(1000)
