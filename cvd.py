@@ -891,12 +891,14 @@ class Svg(QWidget):
         user = "user"
         treffer = False
         i = 0
-        self.shootx = 4
-        self.shooty = self.shtooy / self.shtoox * 4
+        self.shootsx = 4
+        self.shootsy = self.shtooy / self.shtoox * 4
         if user == "user":
             if self.actutime - time.time() >= 3 or self.actutime == 4:
                 if self.waffe == "1":
                     while not i >= 200 and not treffer:
+                        self.shootx = self.cowx + self.shootsx
+                        self.shooty = self.cowy + self.shootsy
                         self.shootanim1 = QPropertyAnimation(self.ball, b"pos")
                         self.shootanim1.setDuration(5)
                         self.shootanim1.setStartValue(QPoint(self.cowx, self.cowy))
