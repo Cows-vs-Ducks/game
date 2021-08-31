@@ -11,7 +11,7 @@ class main(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         
-        self.ava = Svg(self)
+        self.ava = AvA(self)
         self.shop = market(self)
         self.inlog = login(self)
         self.mmen = menu(self)
@@ -685,8 +685,16 @@ class Hearth(QWidget):
             self.herruser = 1
         elif self.herruser == 1:
             self.bothearth1.move(1000000, 1000000)
+            moe = random.randint(1, 3)
             msgbox = QMessageBox()
-            msgbox.setText("Du hast Gewonnen!!!")
+            if moe == 1:
+                msgbox.setText("Du hast Gewonnen!!! Dafür bekommst du 100 Moneten.")
+            elif moe == 2:
+                msgbox.setText("Herzlichen Glückwunsch, du hast gewonnen und bekommst 100 Moneten")
+            elif moe == 3:
+                msgbox.setText("Du hast gewonnen. Als Belohnung bekommst du 100 Moneten.")
+            else:
+                msgbox.setText("Ein Fehler ist aufgetreten. Aber du hast Gewonnen!")
             msgbox.setWindowTitle("Gewonnen")
             msgbox.exec()
             datei = open("user.cvd", "r")
@@ -720,7 +728,7 @@ class Hearth(QWidget):
             msgbox.exec()
             main.menug(self.main)
 
-class Svg(QWidget):
+class AvA(QWidget):
     def __init__(self, main, parent=None):
         super().__init__(parent)
 
