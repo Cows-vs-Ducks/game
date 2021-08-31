@@ -903,6 +903,7 @@ class Svg(QWidget):
                         self.shootanim1.setEndValue(QPointF(self.shootx, self.shooty))
                         self.shootanim1.start()
                         treffer = self.checkuser()
+                        i += 1
             else:
                 pass
 
