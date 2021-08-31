@@ -872,10 +872,12 @@ class Svg(QWidget):
     def checkuser(self):
         if self.shootx <= self.duckx + 175 and self.shooty <= self.ducky + 200 and self.shootx >= self.duckx and self.shooty >= self.ducky:
             print("getroffen")
-            self.ball.move(1000000, 1000000)
+            #self.ball.move(1000000, 1000000)
             self.hearthh.lesshearthbot()
+            return True
         else:
-            self.ball.move(1000000, 1000000)
+            #self.ball.move(1000000, 1000000)
+            return False
 
     def checkbot(self):
         if self.shootx <= self.cowx + 175 and self.shooty <= self.cowy + 200 and self.shootx >= self.cowx and self.shooty >= self.cowy:
@@ -887,19 +889,20 @@ class Svg(QWidget):
 
     def shootuser(self):
         user = "user"
+        treffer = False
+        i = 0
+        self.shootx = 4
+        self.shooty = self.shtooy / self.shtoox * 4
         if user == "user":
             if self.actutime - time.time() >= 3 or self.actutime == 4:
                 if self.waffe == "1":
-                    self.shootanim1 = QPropertyAnimation(self.ball, b"pos")
-                    self.shootanim1.setDuration(1000)
-                    self.shootanim1.setStartValue(QPoint(self.cowx, self.cowy))
-                    self.shootanim1.setEndValue(QPointF(self.shootx, self.shooty))
-                    self.shootanim1.start()
-                    self.timer = QTimer()
-                    self.timer.timeout.connect(self.checkuser)
-                    self.timer.setSingleShot(True)
-                    self.timer.start(1000) 
-                    self.actutume = time.time()
+                    while not i >= 200 and not treffer:
+                        self.shootanim1 = QPropertyAnimation(self.ball, b"pos")
+                        self.shootanim1.setDuration(5)
+                        self.shootanim1.setStartValue(QPoint(self.cowx, self.cowy))
+                        self.shootanim1.setEndValue(QPointF(self.shootx, self.shooty))
+                        self.shootanim1.start()
+                        treffer = self.checkuser()
             else:
                 pass
 
