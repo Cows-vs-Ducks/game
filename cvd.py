@@ -831,7 +831,7 @@ class AvA(QWidget):
         elif str(event.key()) == self.keyLeft:
             self.left()
         elif str(event.key()) == self.keyUp:
-            self.up()
+            self.jump()
         else:
             pass
         
@@ -960,6 +960,9 @@ class AvA(QWidget):
         if self.cowyt >= 0:
             self.cowy = self.cowyt
             self.pic.move(self.cowx, self.cowy)
+                
+     def jump(self):
+        pass
 
 app = QApplication([])
 try:
