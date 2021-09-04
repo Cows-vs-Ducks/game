@@ -915,14 +915,14 @@ class AvA(QWidget):
         i = 0
         self.shootsx = 4
         self.shootsy = self.shooty / self.shootx * 4
-        self.shootffx = self.cowx + self.shootsx
-        self.shootffy = self.cowy + self.shootsy
+        self.shootffx = self.cowx
+        self.shootffy = self.cowy
         if user == "user":
             if self.actutime - time.time() >= 3 or self.actutime == 4:
                 if self.waffe == "1":
                     while not i >= 100 and not treffer:
-                        self.shootffx = self.shootffx + self.shootsx
-                        self.shootffy = self.shootffy + self.shootsy
+                        self.shootffx += self.shootsx
+                        self.shootffy += self.shootsy
                         self.shootanim1 = QPropertyAnimation(self.ball, b"pos")
                         self.shootanim1.setDuration(50)
                         self.shootanim1.setStartValue(QPoint(self.shootffx - self.shootsx, self.shootffy - self.shootsy))
