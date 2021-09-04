@@ -129,32 +129,43 @@ class menu(QWidget):
     def __init__(self, main, parent=None):
         super().__init__(parent)
         ly = QVBoxLayout()
-        
+
+        #self.setStyleSheet("background-color: black;")
+
+        #colors = ["rgb(40, 166, 212)", "rgb(18, 250, 95)", "rgb(61, 217, 245)", "rgb(240, 53, 218)"]
+      
         logout = QPushButton("Logout")
         logout.clicked.connect(main.logout)
+        logout.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ly.addWidget(logout)
         
         avag = QPushButton("Alpha vs. Alpha")
         avag.clicked.connect(main.game)
+        avag.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ly.addWidget(avag)
         
         acc = QPushButton("Einstellungen (bald)")
+        acc.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ly.addWidget(acc)
 
         msg = QPushButton("</> Nachrichten")
         msg.clicked.connect(main.mesge)
+        msg.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ly.addWidget(msg)
         
         bel = QPushButton("tägliche Belohnung abholen")
         bel.clicked.connect(main.belohnung)
+        bel.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ly.addWidget(bel)
         
         cas = QPushButton("Casino")
         cas.clicked.connect(main.cassino)
+        cas.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ly.addWidget(cas)
         
         store = QPushButton("Market")
         store.clicked.connect(main.store)
+        store.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ly.addWidget(store)
 
         self.new = QLabel()
@@ -738,7 +749,7 @@ class AvA(QWidget):
         self.pltz = QLabel()
         ly.addWidget(self.hearthh)
         ly.addWidget(self.pltz)
-        ly.addWidget(self.pltz)
+        #ly.addWidget(self.pltz)
 
         fileh1 = open("height.cvd", "r")
         self.height = fileh1.read()
@@ -751,12 +762,12 @@ class AvA(QWidget):
         #self.herr = 3
         
         self.ball = QWidget(self)
-        self.ball.setStyleSheet("background-color:black;border-radius:25px")
+        self.ball.setStyleSheet("background-color:black;border-radius:12px")
         self.ball.resize(25, 25)
         self.ball.move(1000000, 1000000)
 
         self.botball = QWidget(self)
-        self.botball.setStyleSheet("background-color:black;border-radius:25px")
+        self.botball.setStyleSheet("background-color:black;border-radius:12px")
         self.botball.resize(25, 25)
         self.botball.move(1000000, 1000000)
         
@@ -826,12 +837,12 @@ class AvA(QWidget):
     def keyPressEvent(self, event):
         if str(event.key()) == self.keyRight:
             self.right()
-        #elif str(event.key()) == self.keyDown:
-        #    self.down()
+        elif str(event.key()) == self.keyDown:
+            self.down()
         elif str(event.key()) == self.keyLeft:
             self.left()
         elif str(event.key()) == self.keyUp:
-            self.jump()
+            self.up()
         else:
             pass
         
@@ -903,17 +914,19 @@ class AvA(QWidget):
         treffer = False
         i = 0
         self.shootsx = 4
-        self.shootsy = self.shtooy / self.shtoox * 4
+        self.shootsy = self.shooty / self.shootx * 4
+        self.shootffx = self.cowx + self.shootsx
+        self.shootffy = self.cowy + self.shootsy
         if user == "user":
             if self.actutime - time.time() >= 3 or self.actutime == 4:
                 if self.waffe == "1":
-                    while not i >= 200 and not treffer:
-                        self.shootx = self.cowx + self.shootsx
-                        self.shooty = self.cowy + self.shootsy
+                    while not i >= 100 and not treffer:
+                        self.shootffx = self.shootffx + self.shootsx
+                        self.shootffy = self.shootffy + self.shootsy
                         self.shootanim1 = QPropertyAnimation(self.ball, b"pos")
-                        self.shootanim1.setDuration(5)
-                        self.shootanim1.setStartValue(QPoint(self.cowx, self.cowy))
-                        self.shootanim1.setEndValue(QPointF(self.shootx, self.shooty))
+                        self.shootanim1.setDuration(50)
+                        self.shootanim1.setStartValue(QPoint(self.shootffx - self.shootsx, self.shootffy - self.shootsy))
+                        self.shootanim1.setEndValue(QPointF(self.shootffx, self.shootffy))
                         self.shootanim1.start()
                         treffer = self.checkuser()
                         i += 1
@@ -960,9 +973,6 @@ class AvA(QWidget):
         if self.cowyt >= 0:
             self.cowy = self.cowyt
             self.pic.move(self.cowx, self.cowy)
-                
-     def jump(self):
-        pass
 
 app = QApplication([])
 try:
