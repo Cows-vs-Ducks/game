@@ -216,6 +216,7 @@ class casino(QWidget):
         ly = QVBoxLayout()
         
         ba = QPushButton("Zurück")
+        ba.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ba.clicked.connect(main.menug)
         ly.addWidget(ba)
         
@@ -227,6 +228,7 @@ class casino(QWidget):
         ly.addWidget(self.betr)
         
         bt = QPushButton("los!!!")
+        bt.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         bt.clicked.connect(self.go)
         ly.addWidget(bt)
         
@@ -268,6 +270,7 @@ class message(QWidget):
         ly = QVBoxLayout()
         
         ba = QPushButton("Zurück")
+        ba.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ba.clicked.connect(main.menug)
         ly.addWidget(ba)
         lb = QLabel("Hier kannst du Nachrichten von uns bekommen.")
@@ -279,6 +282,7 @@ class message(QWidget):
         ly.addWidget(self.msgs)
         
         relo = QPushButton("neu laden")
+        relo.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         relo.clicked.connect(self.reload)
         ly.addWidget(relo)
 
@@ -316,6 +320,7 @@ class market(QWidget):
         self.timeeeer.start(2000)
 
         back = QPushButton("Zurück")
+        back.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         back.clicked.connect(main.menug)
         ly.addWidget(back)
         
@@ -448,6 +453,8 @@ class login(QWidget):
         rg = QPushButton("registrieren")
         pltz = QLabel()
         
+        fe.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
+        
         rg.clicked.connect(main.registrer)
         fe.clicked.connect(self.logii)
         
@@ -538,6 +545,8 @@ class registrer(QWidget):
         fertig = QPushButton("registrieren")
         pf = QLabel("* Pflichtfelder")
         log = QPushButton("login")
+        
+        fertig.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
 
         fertig.clicked.connect(self.regg)
         log.clicked.connect(main.login)
