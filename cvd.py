@@ -129,32 +129,43 @@ class menu(QWidget):
     def __init__(self, main, parent=None):
         super().__init__(parent)
         ly = QVBoxLayout()
-        
+
+        #self.setStyleSheet("background-color: black;")
+
+        #colors = ["rgb(40, 166, 212)", "rgb(18, 250, 95)", "rgb(61, 217, 245)", "rgb(240, 53, 218)"]
+      
         logout = QPushButton("Logout")
         logout.clicked.connect(main.logout)
+        logout.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ly.addWidget(logout)
         
         avag = QPushButton("Alpha vs. Alpha")
         avag.clicked.connect(main.game)
+        avag.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ly.addWidget(avag)
         
         acc = QPushButton("Einstellungen (bald)")
+        acc.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ly.addWidget(acc)
 
         msg = QPushButton("</> Nachrichten")
         msg.clicked.connect(main.mesge)
+        msg.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ly.addWidget(msg)
         
         bel = QPushButton("tägliche Belohnung abholen")
         bel.clicked.connect(main.belohnung)
+        bel.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ly.addWidget(bel)
         
         cas = QPushButton("Casino")
         cas.clicked.connect(main.cassino)
+        cas.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ly.addWidget(cas)
         
         store = QPushButton("Market")
         store.clicked.connect(main.store)
+        store.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ly.addWidget(store)
 
         self.new = QLabel()
@@ -205,6 +216,7 @@ class casino(QWidget):
         ly = QVBoxLayout()
         
         ba = QPushButton("Zurück")
+        ba.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ba.clicked.connect(main.menug)
         ly.addWidget(ba)
         
@@ -216,6 +228,7 @@ class casino(QWidget):
         ly.addWidget(self.betr)
         
         bt = QPushButton("los!!!")
+        bt.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         bt.clicked.connect(self.go)
         ly.addWidget(bt)
         
@@ -257,6 +270,7 @@ class message(QWidget):
         ly = QVBoxLayout()
         
         ba = QPushButton("Zurück")
+        ba.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         ba.clicked.connect(main.menug)
         ly.addWidget(ba)
         lb = QLabel("Hier kannst du Nachrichten von uns bekommen.")
@@ -268,6 +282,7 @@ class message(QWidget):
         ly.addWidget(self.msgs)
         
         relo = QPushButton("neu laden")
+        relo.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         relo.clicked.connect(self.reload)
         ly.addWidget(relo)
 
@@ -305,6 +320,7 @@ class market(QWidget):
         self.timeeeer.start(2000)
 
         back = QPushButton("Zurück")
+        back.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         back.clicked.connect(main.menug)
         ly.addWidget(back)
         
@@ -434,20 +450,23 @@ class login(QWidget):
         self.ps1 = QLineEdit()
         fe = QPushButton("login")
         pfff = QLabel("* Pflichtfelder")
-        rg = QPushButton("registrieren")
+        rg = QPushButton("Noch kein Konto?")
         pltz = QLabel()
+        
+        rg.setStyleSheet("border: None; color: blue;")
+        fe.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         
         rg.clicked.connect(main.registrer)
         fe.clicked.connect(self.logii)
         
         llly.addWidget(us, 0, 1)
-        llly.addWidget(self.us1, 1, 1)
+        llly.addWidget(self.us1, 0, 3)
         llly.addWidget(ps, 2, 1)
-        llly.addWidget(self.ps1, 3, 1)
-        llly.addWidget(pltz, 4, 1)
-        llly.addWidget(fe, 5, 0)
+        llly.addWidget(self.ps1, 2, 3)
+        llly.addWidget(pltz, 3, 2)
+        llly.addWidget(fe, 4, 2)
         llly.addWidget(pfff, 5, 1)
-        llly.addWidget(rg, 5, 2)
+        llly.addWidget(rg, 5, 3)
         
         self.setLayout(llly)
 
@@ -526,7 +545,10 @@ class registrer(QWidget):
         
         fertig = QPushButton("registrieren")
         pf = QLabel("* Pflichtfelder")
-        log = QPushButton("login")
+        log = QPushButton("Du hast schon ein Konto?")
+        
+        log.setStyleSheet("border: None; color: blue;")
+        fertig.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
 
         fertig.clicked.connect(self.regg)
         log.clicked.connect(main.login)
@@ -738,7 +760,7 @@ class AvA(QWidget):
         self.pltz = QLabel()
         ly.addWidget(self.hearthh)
         ly.addWidget(self.pltz)
-        ly.addWidget(self.pltz)
+        #ly.addWidget(self.pltz)
 
         fileh1 = open("height.cvd", "r")
         self.height = fileh1.read()
@@ -751,12 +773,12 @@ class AvA(QWidget):
         #self.herr = 3
         
         self.ball = QWidget(self)
-        self.ball.setStyleSheet("background-color:black;border-radius:25px")
+        self.ball.setStyleSheet("background-color:black;border-radius:12px")
         self.ball.resize(25, 25)
         self.ball.move(1000000, 1000000)
 
         self.botball = QWidget(self)
-        self.botball.setStyleSheet("background-color:black;border-radius:25px")
+        self.botball.setStyleSheet("background-color:black;border-radius:12px")
         self.botball.resize(25, 25)
         self.botball.move(1000000, 1000000)
         
@@ -903,17 +925,19 @@ class AvA(QWidget):
         treffer = False
         i = 0
         self.shootsx = 4
-        self.shootsy = self.shtooy / self.shtoox * 4
+        self.shootsy = self.shooty / self.shootx * 4
+        self.shootffx = self.cowx
+        self.shootffy = self.cowy
         if user == "user":
             if self.actutime - time.time() >= 3 or self.actutime == 4:
                 if self.waffe == "1":
-                    while not i >= 200 and not treffer:
-                        self.shootx = self.cowx + self.shootsx
-                        self.shooty = self.cowy + self.shootsy
+                    while not i >= 100 and not treffer:
+                        self.shootffx += self.shootsx
+                        self.shootffy += self.shootsy
                         self.shootanim1 = QPropertyAnimation(self.ball, b"pos")
-                        self.shootanim1.setDuration(5)
-                        self.shootanim1.setStartValue(QPoint(self.cowx, self.cowy))
-                        self.shootanim1.setEndValue(QPointF(self.shootx, self.shooty))
+                        self.shootanim1.setDuration(50)
+                        self.shootanim1.setStartValue(QPoint(self.shootffx - self.shootsx, self.shootffy - self.shootsy))
+                        self.shootanim1.setEndValue(QPointF(self.shootffx, self.shootffy))
                         self.shootanim1.start()
                         treffer = self.checkuser()
                         i += 1
