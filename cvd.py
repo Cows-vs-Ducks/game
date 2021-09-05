@@ -450,22 +450,23 @@ class login(QWidget):
         self.ps1 = QLineEdit()
         fe = QPushButton("login")
         pfff = QLabel("* Pflichtfelder")
-        rg = QPushButton("registrieren")
+        rg = QPushButton("Noch kein Konto?")
         pltz = QLabel()
         
+        rg.setStyleSheet("border: None; color: blue;")
         fe.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
         
         rg.clicked.connect(main.registrer)
         fe.clicked.connect(self.logii)
         
         llly.addWidget(us, 0, 1)
-        llly.addWidget(self.us1, 1, 1)
+        llly.addWidget(self.us1, 0, 3)
         llly.addWidget(ps, 2, 1)
-        llly.addWidget(self.ps1, 3, 1)
-        llly.addWidget(pltz, 4, 1)
-        llly.addWidget(fe, 5, 0)
+        llly.addWidget(self.ps1, 2, 3)
+        llly.addWidget(pltz, 3, 2)
+        llly.addWidget(fe, 4, 2)
         llly.addWidget(pfff, 5, 1)
-        llly.addWidget(rg, 5, 2)
+        llly.addWidget(rg, 5, 3)
         
         self.setLayout(llly)
 
@@ -544,8 +545,9 @@ class registrer(QWidget):
         
         fertig = QPushButton("registrieren")
         pf = QLabel("* Pflichtfelder")
-        log = QPushButton("login")
+        log = QPushButton("Du hast schon ein Konto?")
         
+        log.setStyleSheet("border: None; color: blue;")
         fertig.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
 
         fertig.clicked.connect(self.regg)
