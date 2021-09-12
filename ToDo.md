@@ -5,4 +5,5 @@
 * add ranking
 * add Cows vs. Ducks
 * add settings
+* update Chat
 * ...
