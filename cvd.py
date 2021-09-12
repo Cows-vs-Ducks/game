@@ -183,7 +183,7 @@ class menu(QWidget):
         cas = QPushButton("Casino")
         cas.clicked.connect(main.cassino)
         #cas.setStyleSheet('font: 75 10pt "Microsoft YaHei UI"; font-weight: bold; color: rgb(255, 255, 255); background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgb(61, 217, 245), stop:1 rgb(240, 53, 218)); border-style: solid; border-radius:9px; }')
-        ly.addWidget(cas)
+        #ly.addWidget(cas)
         
         store = QPushButton("Market")
         store.clicked.connect(main.store)
