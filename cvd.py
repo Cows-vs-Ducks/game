@@ -787,7 +787,7 @@ class AvA(QWidget):
         #ly.addWidget(self.pltz)
 
         palette = QPalette()
-        palette.setColor(QPalette.Window, QColor(53, 53, 53))
+        palette.setColor(QPalette.Window, Qt.white))
         self.setPalette(palette)
 
         fileh1 = open("height.cvd", "r")
