@@ -9,4 +9,5 @@
 - [ ] update Chat
 - [ ] add Updater
 - [ ] add logs
+- [ ] add for android
 - [ ] ...
