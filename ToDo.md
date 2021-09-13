@@ -8,4 +8,5 @@
 - [ ] add settings
 - [ ] update Chat
 - [ ] add Updater
+- [ ] add logs
 - [ ] ...
